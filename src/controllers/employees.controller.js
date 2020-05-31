@@ -1,4 +1,6 @@
-const employeesManager = require('../managers/employees-manager');
+const employeesManager = require('../managers/employees.manager');
+const vacationsBalancesManager = require('../managers/vacations-balances.manager');
+const vacationsManager = require('../managers/vacations.managers');
 const date = require('../util/date');
 
 exports.getAllEmployees = async (req, res, next) => {
@@ -94,33 +96,82 @@ exports.getEmployeeManager = async (req, res, next) => {
         res.send(result);
 
     } catch (e) {
-        console.log(e);
         res.status(500).send();
     }
 
 }
 
-exports.getAllDepartmentEmployees = async (req, res, next) => {
+exports.getEmployeeVacationsBalances = async (req, res) => {
 
-    const departmentCode = req.params.departmentCode;
+    const employeeId = req.params.employeeId;
     const lang = req.query.lang;
     const fromDateText = req.query.fromDate;
     const toDateText = req.query.toDate;
     const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+    const vacationsTypesIds = req.query.vacationsTypesIds;
 
     const fromDateObject = date.parseDate(fromDateText, dateFormatText);
     const toDateObject = date.parseDate(toDateText, dateFormatText);
 
+    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+
+    try{
+        const results = await vacationsBalancesManager
+            .getAllVacationsBalances([employeeId],
+                 fromDateObject, 
+                 toDateObject, 
+                 vacationsTypesIdsCollection, lang);
+        return res.send(results);
+    } catch(e) {
+        res.status(500).send();
+    }
+}
+
+exports.getEmployeeVacationsBalancesSummaries = async (req, res) => {
+
+    const employeeId = req.params.employeeId;
+    const lang = req.query.lang;
+    const balanceDateText = req.query.balanceDate;
+    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+    const vacationsTypesIds = req.query.vacationsTypesIds;
+
+    const balanceDateObject = date.parseDate(balanceDateText, dateFormatText);
+
+    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+
     try {
 
-        const result = await employeesManager.getAllDepartmentEmployees(departmentCode,
-             fromDateObject,
-             toDateObject,
-             lang);
+        const results = await vacationsBalancesManager
+            .getAllVacationsBalancesSummaries([employeeId], balanceDateObject, vacationsTypesIdsCollection, lang);
 
-        res.send(result);
+        res.send(results);
+    } catch(e) {
+        res.status(500).send();
+    }
+}
 
-    } catch (e) {
+exports.getEmployeeVacations = async (req, res) => {
+
+    const employeeId = req.params.employeeId;
+    const lang = req.query.lang;
+    const fromDateText = req.query.fromDate;
+    const toDateText = req.query.toDate;
+    const registerDateText = req.query.registerDate;
+    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+    const vacationsTypesIds = req.query.vacationsTypesIds;
+
+    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
+    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    const registerDateObject = date.parseDate(registerDateText, dateFormatText);
+
+    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+
+    try {
+        const results = await vacationsManager.getAllEmployeesVacations([employeeId],
+            fromDateObject, toDateObject, registerDateObject, vacationsTypesIdsCollection, lang);
+
+        res.send(results);    
+    } catch(e) {
         res.status(500).send();
     }
 }

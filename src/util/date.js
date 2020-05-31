@@ -41,3 +41,9 @@ exports.convertFormat = (dateText,
     let formatedDate = this.formatDate(parsedDate, newFormat);
     return formatedDate;
 }
+
+exports.calcDaysDuration = (startDateObject, endDateObject) => {
+
+    return date.subtract(endDateObject, startDateObject).toDays() + 1;
+
+}

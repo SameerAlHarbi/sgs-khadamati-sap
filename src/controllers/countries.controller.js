@@ -1,4 +1,4 @@
-const countriesManager = require('../managers/countries-managers');
+const countriesManager = require('../managers/countries.managers');
 
 exports.getAllCountries = async (req, res, next) => {
     

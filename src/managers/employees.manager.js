@@ -35,14 +35,14 @@ exports.getAllEmployeesInfo = async (employeesIds = [], fromDate = new Date(), t
           }
 
         const client = await sapPool.acquire();
-        console.log('1');
+
         let results = await client.call('ZHR_FINGERPRINT_EMPLOYEE_DATA', sapParams);
 
         if(!results || !results['T_EMPDATA']) {
             return [];
         }
 
-        // return results;
+        return results;
         return results['T_EMPDATA'].map( result => modelMapper.mapEmployeeDTO(result));
     } catch (e) {
         console.log(e);
@@ -147,7 +147,8 @@ exports.getAllDepartmentEmployees = async (departmentCode, fromDate = new Date()
 
         const employeesInfo = await this.getAllEmployeesInfo(employeesIds, fromDate, toDate, undefined, lang);
 
-        return results;
+        return employeesInfo;
+
     } catch (e) {
         throw new Error(e.message);
     }

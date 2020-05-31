@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const countriesRouter = require('./routers/countries.router');
 const employeesRouter = require('./routers/employees.router');
 const departmentsRouter = require('./routers/departments.router');
+const vacationsRouter = require('./routers/vacations.router');
 
 const errorController = require('./controllers/error.controller');
 
@@ -16,7 +17,8 @@ app.use(express.json());
 
 app.use('/countries', countriesRouter);
 app.use('/employees', employeesRouter);
-app.use('/departments', departmentsRouter);
+app.use('/departments', departmentsRouter); 
+app.use('/vacations', vacationsRouter);
 
 app.use(errorController.get404);
 
