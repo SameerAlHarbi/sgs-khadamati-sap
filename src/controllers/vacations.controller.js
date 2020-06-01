@@ -28,7 +28,7 @@ exports.getAllVacations = async (req, res) => {
                 lang);
         res.send(results);
     } catch(e) {
-        console.log(e)
+        console.log(e);
         res.status(500).send();
     }
 
@@ -67,13 +67,12 @@ exports.validateEmployeeVacation = async (req, res) => {
 
         if(validationMessage === '') {
             const result = await vacationsManager.validateEmployeeVacation(employeeVacation);
-            console.log(result);
             res.send(result);
         } else {
             return res.status(400).send(validationMessage);
         }
     } catch(e) {
-        console.log(e);
+        console.log(e); 
         res.status(500).send();
     }
 

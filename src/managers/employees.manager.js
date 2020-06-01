@@ -42,7 +42,6 @@ exports.getAllEmployeesInfo = async (employeesIds = [], fromDate = new Date(), t
             return [];
         }
 
-        return results;
         return results['T_EMPDATA'].map( result => modelMapper.mapEmployeeDTO(result));
     } catch (e) {
         console.log(e);

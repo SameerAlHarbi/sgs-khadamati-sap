@@ -12,5 +12,4 @@ router.get('/:employeeId/vacations', employeesController.getEmployeeVacations);
 router.get('/:employeeId/vacations/balances', employeesController.getEmployeeVacationsBalances);
 router.get('/:employeeId/vacations/balances/summary', employeesController.getEmployeeVacationsBalancesSummaries);
 
-
 module.exports = router;

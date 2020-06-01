@@ -88,7 +88,7 @@ exports.validateEmployeeVacation = async (employeeVacation) => {
         console.log(startDate, endDate)
 
         const client = await sapPool.acquire();
-        const sapResults = await client.call('BAPI_ABSENCE_SIMULATECREATION', {
+        const sapResults = await client.call('ZHR_ABSENCE_SIMULATECREATION', {
             EMPLOYEENUMBER: employeeVacation.employeeId.toString(),
             ABSENCETYPE: employeeVacation.vacationTypeId,
             VALIDITYBEGIN: startDate,
