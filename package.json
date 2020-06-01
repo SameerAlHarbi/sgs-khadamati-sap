@@ -15,7 +15,7 @@
     "chalk": "^3.0.0",
     "date-and-time": "^0.13.1",
     "express": "^4.17.1",
-    "node-rfc": "^1.0.5"
+    "node-rfc": "^1.2.0"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
