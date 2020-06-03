@@ -43,4 +43,4 @@ exports.getAllVacationsTypes = async (workSystem = 'ALL',lang = 'A') => {
     } catch (e) {
         throw new Error(e.message);
     }
-}
+};

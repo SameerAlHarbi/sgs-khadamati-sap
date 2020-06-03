@@ -34,7 +34,7 @@ exports.getAllVacations = async (req, res) => {
 
 }
 
-validateEmployeeVacationRequest = (employeeVacation, dateFormatText) => {
+validateEmployeeVacationRequest = async (employeeVacation, dateFormatText) => {
 
     let validationMessage = '';
 
@@ -53,29 +53,53 @@ validateEmployeeVacationRequest = (employeeVacation, dateFormatText) => {
         validationMessage = 'Invalid vacation end date!';
     } 
 
-    return validationMessage;
+    let badRequest = true;
+    if(validationMessage === '' ) {
+        badRequest = false;
+        const result = await 
+            vacationsManager.validateEmployeeVacation(employeeVacation);
+        
+        validationMessage = result.validationMessage;
+    }
+
+    return { message: validationMessage, badRequest, result : validationMessage === ''};
 }
 
 exports.validateEmployeeVacation = async (req, res) => {
 
     try {
+        const employeeVacation = req.body;
+
+        let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
+            req.query.dateFormat || date.defaultApiCompiledDateFormat);
+
+            delete validationResult.badRequest;
+
+        res.status(validationResult.badRequest ? 400 : 200)
+            .send(validationResult);
+    } catch(e) {
+        res.status(500).send();
+    }
+}
+
+exports.createEmployeeVacation = async (req, res) => {
+    try {
 
         const employeeVacation = req.body;
 
-        let validationMessage = validateEmployeeVacationRequest(employeeVacation, 
+        let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
             req.query.dateFormat || date.defaultApiCompiledDateFormat);
 
-        if(validationMessage === '') {
-            const result = await vacationsManager.validateEmployeeVacation(employeeVacation);
-            res.send(result);
-        } else {
-            return res.status(400).send(validationMessage);
+        if(!validationResult.result) {
+            delete validationResult.badRequest;
+            return res.status(400).send(validationResult);
         }
+
+        const creationResult = await vacationsManager
+            .createEmployeeVacation(employeeVacation);
+
+        res.send(creationResult);
     } catch(e) {
-        console.log(e); 
         res.status(500).send();
     }
-
 }
-
-exports.creat

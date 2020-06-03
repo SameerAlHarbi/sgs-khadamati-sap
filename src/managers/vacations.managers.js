@@ -71,21 +71,16 @@ exports.getAllEmployeesVacations = async (employeesIds = [],
 
             return resultsVacations.sort(helpers.compareValues('startDate'));
         } catch (e) {
-            console.log(e)
+            console.log(e);
             throw new Error(e.message);
         }
-}
+};
 
 exports.validateEmployeeVacation = async (employeeVacation) => {
 
     try {
-
-
         const startDate = date.convertFormat(employeeVacation.startDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
         const endDate = date.convertFormat(employeeVacation.endDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
-
-
-        console.log(startDate, endDate)
 
         const client = await sapPool.acquire();
         const sapResults = await client.call('ZHR_ABSENCE_SIMULATECREATION', {
@@ -103,6 +98,14 @@ exports.validateEmployeeVacation = async (employeeVacation) => {
     } catch(e) {
         throw new Error(e.message);
     }
+};
+
+exports.createEmployeeVacation = async (employeeVacation) => {
+
+    try {
+
+        return true;
+    } catch(e) {
+        throw new Error(e.message);
+    }
 }
-
-

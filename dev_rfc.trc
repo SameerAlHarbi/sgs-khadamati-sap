@@ -9422,3 +9422,25 @@ NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 
 2020-06-01 11:10:32.800783 [17275526420738605057] >> Info entry
 	Searching for config file sapnwrfc.ini
 
+
+**** Trace file opened at 2020-06-03 13:40:18.256233 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/Abujude/Documents/Development/sgs-khadamati/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro-2.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-03 13:40:18.256565 [17275522091411570689] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-03 13:43:24.606536 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/Abujude/Documents/Development/sgs-khadamati/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro-2.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-03 13:43:24.606662 [17275522091411570689] >> Info entry
+	Searching for config file sapnwrfc.ini
+
