@@ -6,9 +6,10 @@ const vacationsController = require('../controllers/vacations.controller');
 const router = express.Router();
 
 router.get('/', vacationsController.getAllVacations);
-router.post('/check', vacationsController.validateEmployeeVacation);
 router.get('/types', vacationsTypesController.getAllVacationsTypes);
 router.get('/balances', vacationsBalancesController.getAllVacationsBalances);
 router.get('/balances/summary', vacationsBalancesController.getAllVacationsBalancesSummaries);
+router.post('/validate', vacationsController.validateEmployeeVacation);
+router.post('/create', vacationsController.createEmployeeVacation);
 
 module.exports = router;

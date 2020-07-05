@@ -9444,3 +9444,542 @@ NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 
 2020-06-03 13:43:24.606662 [17275522091411570689] >> Info entry
 	Searching for config file sapnwrfc.ini
 
+
+**** Trace file opened at 2020-06-05 17:19:42.830108 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:19:42.830258 [17275510409100525569] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:21:49.298610 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:21:49.298727 [17275510615258955777] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:33:00.856460 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:33:00.856602 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:40:17.071697 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:40:17.071817 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:41:00.741624 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:41:00.741745 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:41:14.320315 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:41:14.320441 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:42:38.340923 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:42:38.341050 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:42:52.731580 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:42:52.731703 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:48:08.343346 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:48:08.343479 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:48:43.484222 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:48:43.484334 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:50:02.482443 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:50:02.482576 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:50:15.600830 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:50:15.600964 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-05 17:50:42.669756 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 17:50:42.669871 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-06-05 18:19:09.336081 [1316382462334496768] >> Error entry
+	[Handle: 4378920960	ConvID: 70598728	SysID: ERQ	SysNr: 02	Target: SGS-JEDX027	User: ABDANWAR	Mandant: 300	Language: A	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: connection closed without message (CM_NO_DATA_RECEIVED)
+
+**** Trace file opened at 2020-06-05 18:19:34.654109 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 18:19:34.654237 [17275525115068547073] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-06-05 18:20:44.503363 [867672179355971584] >> Error entry
+	[Handle: 4655710720	ConvID: 	SysID: 	SysNr: 	Target: 	User: 	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '172.16.11.27:3302' not reached
+TIME        Fri Jun  5 18:20:44 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      /bas/753_REL/src/base/ni/nibuf.cpp
+LINE        4568
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     3
+
+
+**** Trace file opened at 2020-06-05 18:21:21.441950 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 18:21:21.442077 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-06-05 18:22:21.494998 [890612389957890048] >> Error entry
+	[Handle: 4421062656	ConvID: 	SysID: 	SysNr: 	Target: 	User: 	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host SAMEERs-MacBook-Pro.local with
+            Unicode
+ERROR       partner '172.16.11.27:3302' not reached
+TIME        Fri Jun  5 18:22:21 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      /bas/753_REL/src/base/ni/nibuf.cpp
+LINE        4568
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+2020-06-05 18:22:21.495259 [854530816380792832] >> Error entry
+	[Handle: 4412551680	ConvID: 	SysID: 	SysNr: 	Target: 	User: 	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '172.16.11.27:3302' not reached
+TIME        Fri Jun  5 18:22:21 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      /bas/753_REL/src/base/ni/nibuf.cpp
+LINE        4568
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+
+**** Trace file opened at 2020-06-05 18:28:07.093492 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.4.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-05 18:28:07.093639 [17275524840190640129] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-27 21:05:51.463800 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-27 21:05:51.464240 [17275510890136862721] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-06-29 02:41:29.714484 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-29 02:41:29.714962 [17275510890136862721] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-06-29 05:48:55.985955 [1060680038178910208] >> Error entry
+	[Handle: 4412561920	ConvID: 89172715	SysID: ERQ	SysNr: 02	Target: SGS-JEDX027	User: ABDANWAR	Mandant: 300	Language: A	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       connection to partner '172.16.11.27:3302' broken
+TIME        Mon Jun 29 05:48:55 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -6
+MODULE      /bas/753_REL/src/base/ni/nixxi.cpp
+LINE        5429
+DETAIL      NiIRead: P=172.16.11.27:3302; L=10.242.2.2:57915
+SYSTEM CALL recv
+ERRNO       54
+ERRNO TEXT  Connection reset by peer
+COUNTER     5
+
+
+**** Trace file opened at 2020-06-29 05:50:39.711197 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-06-29 05:50:39.711336 [17275510134222618625] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-03 07:49:30.192719 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-03 07:49:30.194245 [17275512539404304385] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-03 07:56:33.736527 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-03 07:56:33.736692 [17275512539404304385] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-03 08:39:48.081746 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-03 08:39:48.081914 [17275511783490060289] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-07-03 11:00:22.498068 [363713979702341632] >> Error entry
+	[Handle: 4387712000	ConvID: 58255619	SysID: ERQ	SysNr: 02	Target: SGS-JEDX027	User: ABDANWAR	Mandant: 300	Language: A	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host SAMEERs-MacBook-Pro.local with
+            Unicode
+ERROR       connection to partner '172.16.11.27:3302' broken
+TIME        Fri Jul  3 11:00:22 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -6
+MODULE      /bas/753_REL/src/base/ni/nixxi.cpp
+LINE        5429
+DETAIL      NiIRead: P=172.16.11.27:3302; L=10.242.2.3:53418
+SYSTEM CALL recv
+ERRNO       54
+ERRNO TEXT  Connection reset by peer
+COUNTER     4
+
+
+**** Trace file opened at 2020-07-03 11:04:01.306733 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-03 11:04:01.306868 [17275509515747328001] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-07-04 08:41:18.461201 [348913797278232576] >> Error entry
+	[Handle: 4370555392	ConvID: 	SysID: 	SysNr: 	Target: 	User: 	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '172.16.11.27:3302' not reached
+TIME        Sat Jul  4 08:41:18 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      /bas/753_REL/src/base/ni/nibuf.cpp
+LINE        4568
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+
+**** Trace file opened at 2020-07-04 08:41:33.078930 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 08:41:33.079053 [17275509515747328001] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-07-04 11:18:29.298815 [750390228958605312] >> Error entry
+	[Handle: 4379070976	ConvID: 47283734	SysID: ERQ	SysNr: 02	Target: SGS-JEDX027	User: ABDANWAR	Mandant: 300	Language: A	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       connection to partner '172.16.11.27:3302' broken
+TIME        Sat Jul  4 11:18:29 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -6
+MODULE      /bas/753_REL/src/base/ni/nixxi.cpp
+LINE        5429
+DETAIL      NiIRead: P=172.16.11.27:3302; L=10.242.2.3:56602
+SYSTEM CALL recv
+ERRNO       54
+ERRNO TEXT  Connection reset by peer
+COUNTER     10
+
+
+**** Trace file opened at 2020-07-04 11:47:53.232898 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 11:47:53.233039 [17275509859344711681] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-04 11:48:42.918972 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 11:48:42.919090 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-07-04 13:56:42.402393 [429912207556374528] >> Error entry
+	[Handle: 4379598848	ConvID: 59045198	SysID: GRP	SysNr: 00	Target: SGS-JEDX003	User: SGSABAP	Mandant: 400	Language: A	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+ERROR       connection to partner '172.16.11.3:3300' broken
+TIME        Sat Jul  4 13:56:42 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -6
+MODULE      /bas/753_REL/src/base/ni/nixxi.cpp
+LINE        5429
+DETAIL      NiIRead: P=172.16.11.3:3300; L=10.242.2.3:57090
+SYSTEM CALL recv
+ERRNO       60
+ERRNO TEXT  Operation timed out
+COUNTER     3
+
+
+**** Trace file opened at 2020-07-04 17:16:56.771714 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:16:56.771830 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-04 17:20:23.094394 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:20:23.094538 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-07-04 17:27:23.438576 [957202799865655296] >> Error entry
+	[Handle: 4395793408	ConvID: 79091412	SysID: GRP	SysNr: 00	Target: SGS-JEDX003	User: SGSABAP	Mandant: 400	Language: A	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+ERROR       connection to partner '172.16.11.3:3300' broken
+TIME        Sat Jul  4 17:27:23 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -6
+MODULE      /bas/753_REL/src/base/ni/nixxi.cpp
+LINE        5429
+DETAIL      NiIRead: P=172.16.11.3:3300; L=10.242.2.4:57714
+SYSTEM CALL recv
+ERRNO       54
+ERRNO TEXT  Connection reset by peer
+COUNTER     3
+
+
+**** Trace file opened at 2020-07-04 17:28:53.105442 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:28:53.105576 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-04 17:32:21.793904 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:32:21.794073 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-04 17:32:35.712697 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:32:35.712817 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-04 17:34:38.440361 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:34:38.440552 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-04 17:34:59.672556 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:34:59.672671 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+
+**** Trace file opened at 2020-07-04 17:38:14.688995 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MacBook-Pro.local, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-04 17:38:14.689290 [17275509790625234945] >> Info entry
+	Searching for config file sapnwrfc.ini
+

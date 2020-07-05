@@ -3,7 +3,11 @@ const modelMapper = require('../models/model-mapper');
 const SalaryModel = require('../models/salary.model');
 const date = require('../util/date');
 
-exports.getAllEmployeesInfo = async (employeesIds = [], fromDate = new Date(), toDate = new Date(), status = 'date', lang = 'A') => {
+exports.getAllEmployeesInfo = async (employeesIds = [], 
+    fromDate = new Date(), 
+    toDate = new Date(), 
+    status = 'date', 
+    lang = 'A') => {
 
     lang = lang.toUpperCase();
 
@@ -49,7 +53,9 @@ exports.getAllEmployeesInfo = async (employeesIds = [], fromDate = new Date(), t
     }
 }
 
-exports.getEmployeeSalaryInfo = async (employeeId, fromDate = new Date(), toDate = new Date()) => {
+exports.getEmployeeSalaryInfo = async (employeeId, 
+    fromDate = new Date(), 
+    toDate = new Date()) => {
 
     try {
 
@@ -88,7 +94,10 @@ exports.getEmployeeSalaryInfo = async (employeeId, fromDate = new Date(), toDate
     }
 }
 
-exports.getEmployeeManagerInfo = async (employeeId, fromDate = new Date(), toDate = new Date(), lang = 'A') => {
+exports.getEmployeeManagerInfo = async (employeeId,
+     fromDate = new Date(),
+     toDate = new Date(),
+     lang = 'A') => {
 
     try {
 

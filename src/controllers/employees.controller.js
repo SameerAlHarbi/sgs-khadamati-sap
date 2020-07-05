@@ -19,7 +19,13 @@ exports.getAllEmployees = async (req, res, next) => {
     const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
 
     try {
-        let results = await employeesManager.getAllEmployeesInfo(employeesIdsCollection, fromDateObject, toDateObject, status, lang);
+        
+        let results = await employeesManager.getAllEmployeesInfo(employeesIdsCollection, 
+            fromDateObject, 
+            toDateObject, 
+            status, 
+            lang);
+
         res.send(results);
     } catch (e) {
         res.status(500).send();
@@ -37,6 +43,7 @@ exports.getEmployeeById = async (req, res, next) => {
         {
             return res.status(400).send({ error: 'Invalid Employee id!'});
         }
+        
         const results = await employeesManager.getAllEmployeesInfo([employeeId], undefined, undefined, 'all', lang);
 
         if(results && results.length > 0) {

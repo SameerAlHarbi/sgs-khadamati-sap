@@ -104,8 +104,29 @@ exports.createEmployeeVacation = async (employeeVacation) => {
 
     try {
 
-        return true;
+        const startDate = date.convertFormat(employeeVacation.startDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
+        const endDate = date.convertFormat(employeeVacation.endDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
+
+        const client = await sapPool.acquire();
+        const sapResults = await client.call('ZHR_ABSENCE_CREATE', {
+            EMPLOYEENUMBER: employeeVacation.employeeId.toString(),
+            ABSENCETYPE: employeeVacation.vacationTypeId,
+            VALIDITYBEGIN: startDate,
+            VALIDITYEND: endDate
+        });
+
+        if(!sapResults || !sapResults['RETURN']) {
+            return { result : false, message: 'Creation error', id: 0, number: 0 }
+        }
+
+        return {
+            result: sapResults['RETURN'].TYPE === 'S',
+            message: sapResults['RETURN'].MESSAGE,
+            id: sapResults['RETURN'].ID,
+            number: sapResults['RETURN'].NUMBER
+        }
     } catch(e) {
+        console.log(e)
         throw new Error(e.message);
     }
 }
