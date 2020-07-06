@@ -27,7 +27,7 @@ const parseVacations = (sapVacations, infoType) => {
     return resultsVacations;
 }
 
-exports.getAllEmployeesVacations = async (employeesIds = [],
+exports.getAllVacations = async (employeesIds = [],
     fromDate = null,
     toDate = null,
     registerDate = null, 

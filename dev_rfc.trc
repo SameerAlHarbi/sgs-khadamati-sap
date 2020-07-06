@@ -9983,3 +9983,61 @@ NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 
 2020-07-04 17:38:14.689290 [17275509790625234945] >> Info entry
 	Searching for config file sapnwrfc.ini
 
+
+**** Trace file opened at 2020-07-06 07:23:01.069930 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MBP, IP address: 10.11.49.133, IPv6 address: 
+
+2020-07-06 07:23:01.071134 [17275510409100525569] >> Info entry
+	Searching for config file sapnwrfc.ini
+
+2020-07-06 07:24:01.151810 [821668612849823744] >> Error entry
+	[Handle: 4404230656	ConvID: 	SysID: 	SysNr: 	Target: 	User: 	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host with Unicode
+ERROR       partner '172.16.11.3:3300' not reached
+TIME        Mon Jul  6 07:24:01 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      /bas/753_REL/src/base/ni/nibuf.cpp
+LINE        4568
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+2020-07-06 07:24:01.151941 [785587039272726528] >> Error entry
+	[Handle: 4370702848	ConvID: 	SysID: 	SysNr: 	Target: 	User: 	Codepage: 4103]
+	ommunicationException: Key: RFC_COMMUNICATION_FAILURE, Code: RFC_COMMUNICATION_FAILURE, Message: 
+LOCATION    CPIC (TCP/IP) on local host SAMEERs-MBP with Unicode
+ERROR       partner '172.16.11.3:3300' not reached
+TIME        Mon Jul  6 07:24:01 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      /bas/753_REL/src/base/ni/nibuf.cpp
+LINE        4568
+DETAIL      NiBufIConnect: connection pending after 60000ms
+SYSTEM CALL connect
+ERRNO       36
+ERRNO TEXT  Operation now in progress
+COUNTER     2
+
+
+**** Trace file opened at 2020-07-06 07:30:14.312956 UTC+03:00 (UTC), Encoding UTF-8
+NW RFC Library: SDK variant, Release 750 Patch Level 5, Compiled on Aug 20 2019 18:22:46
+ CPIC library: 753.2019.02.22 version 3, NI library: 40, Kernel Release: 753 Patch Level 500
+ Current working directory: /Users/abujude/Documents/Development/sgs/sgs-khadamati/backend/sgs-khadamati-sap, Program: node
+ Hardware: Apple Macintosh with Mac OS X (Darwin) INTEL x86_64 x86_64, Operating_system: Darwin 19.5.0
+ Hostname: SAMEERs-MBP, IP address: 127.0.0.1, IPv6 address: 
+
+2020-07-06 07:30:14.313062 [17275510409100525569] >> Info entry
+	Searching for config file sapnwrfc.ini
+

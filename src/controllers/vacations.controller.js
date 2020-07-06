@@ -1,5 +1,5 @@
 const vacationsManager = require('../managers/vacations.managers');
-const date = require('../util/date');
+const dateUtil = require('../util/date');
 
 exports.getAllVacations = async (req, res) => {
 
@@ -8,12 +8,12 @@ exports.getAllVacations = async (req, res) => {
     const fromDateText = req.query.fromDate;
     const toDateText = req.query.toDate;
     const registerDateText = req.query.registerDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+    const dateFormatText = req.query.dateFormat || dateUtil.defaultApiDateFormatText;
     const vacationsTypesIds = req.query.vacationsTypesIds;
 
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
-    const registerDateObject = date.parseDate(registerDateText, dateFormatText);
+    const fromDateObject = dateUtil.parseDate(fromDateText, dateFormatText);
+    const toDateObject = dateUtil.parseDate(toDateText, dateFormatText);
+    const registerDateObject = dateUtil.parseDate(registerDateText, dateFormatText);
 
     const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
     const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
@@ -21,7 +21,8 @@ exports.getAllVacations = async (req, res) => {
     try {
 
         const results = await vacationsManager
-            .getAllEmployeesVacations(employeesIdsCollection, 
+            .getAllVacations(
+                employeesIdsCollection, 
                 fromDateObject, 
                 toDateObject,
                 registerDateObject,
@@ -29,8 +30,9 @@ exports.getAllVacations = async (req, res) => {
                 lang);
 
         res.send(results);
+
     } catch(e) {
-        console.log(e);
+        
         res.status(500).send();
     }
 
@@ -53,8 +55,8 @@ validateEmployeeVacationRequest = async (employeeVacation, dateFormatText) => {
     }
 
     if (validationMessage === '') {
-        const startDateObject = date.parseDate(employeeVacation.startDate, dateFormatText);
-        const endDateObject = date.parseDate(employeeVacation.endDate, dateFormatText);
+        const startDateObject = dateUtil.parseDate(employeeVacation.startDate, dateFormatText);
+        const endDateObject = dateUtil.parseDate(employeeVacation.endDate, dateFormatText);
 
         if(!startDateObject) {
             validationMessage = 'Invalid vacation start date!';
@@ -82,7 +84,7 @@ exports.validateEmployeeVacation = async (req, res) => {
         const employeeVacation = req.body;
 
         let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
-            req.query.dateFormat || date.defaultApiCompiledDateFormat);
+            req.query.dateFormat || dateUtil.defaultApiCompiledDateFormat);
 
             delete validationResult.badRequest;
 
@@ -98,7 +100,7 @@ exports.createEmployeeVacation = async (req, res) => {
         const employeeVacation = req.body;
 
         let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
-            req.query.dateFormat || date.defaultApiCompiledDateFormat);
+            req.query.dateFormat || dateUtil.defaultApiCompiledDateFormat);
 
         if(!validationResult.result) {
             delete validationResult.badRequest;

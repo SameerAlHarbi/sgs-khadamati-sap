@@ -174,7 +174,7 @@ exports.getEmployeeVacations = async (req, res) => {
     const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
 
     try {
-        const results = await vacationsManager.getAllEmployeesVacations([employeeId],
+        const results = await vacationsManager.getAllVacations([employeeId],
             fromDateObject, toDateObject, registerDateObject, vacationsTypesIdsCollection, lang);
 
         res.send(results);    
