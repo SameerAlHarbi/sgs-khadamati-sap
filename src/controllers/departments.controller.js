@@ -9,13 +9,13 @@ exports.getAllDepartments = async (req, res, next) => {
     const fromDateText = req.query.fromDate;
     const toDateText = req.query.toDate;
     const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const flatData = req.query.flat;
+    const flat = req.query.flat ? req.query.flat === 'true' : false;
 
     const fromDateObject = date.parseDate(fromDateText, dateFormatText);
     const toDateObject = date.parseDate(toDateText, dateFormatText);
 
     try {
-        const results = await departmentsManager.getAllDepartments(fromDateObject, toDateObject, lang, flatData);
+        const results = await departmentsManager.getAllDepartments(fromDateObject, toDateObject, lang, flat);
         res.send(results);
     } catch (e) {
         res.status(500).send();
@@ -60,14 +60,14 @@ exports.getChildDepartments = async (req, res, next) => {
     const toDateText = req.query.toDate;
     const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
     const childDepth = isNaN(req.query.childDepth)  ? -1 : +req.query.childDepth;
-    const flatData = req.query.flat;
+    const flat = req.query.flat ? req.query.flat === 'true' : false;
 
     const fromDateObject = date.parseDate(fromDateText, dateFormatText);
     const toDateObject = date.parseDate(toDateText, dateFormatText);
 
     try {
 
-        const results = await departmentsManager.getChildDepartments(departmentId, fromDateObject, toDateObject, lang, childDepth, flatData);
+        const results = await departmentsManager.getChildDepartments(departmentId, fromDateObject, toDateObject, lang, childDepth, flat);
         res.send(results);
 
     } catch(e) {

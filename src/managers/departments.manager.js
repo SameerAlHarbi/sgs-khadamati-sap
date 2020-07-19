@@ -1,7 +1,7 @@
 const sapPool = require('../util/sap-rfc');
 const date = require('../util/date');
 
-exports.getAllDepartments = async (fromDate = new Date(), toDate = new Date(), lang = 'ِA', flatData = false) => {
+exports.getAllDepartments = async (fromDate = new Date(), toDate = new Date(), lang = 'ِA', flat = false) => {
 
     lang = lang.toUpperCase();
 
@@ -73,7 +73,7 @@ exports.getAllDepartments = async (fromDate = new Date(), toDate = new Date(), l
 
         }
 
-        if(flatData) {
+        if(flat) {
             departments.forEach(department => {
                  department.childDepartments = [];
             });
@@ -134,14 +134,14 @@ exports.getDepartmentById = async (departmentId, fromDate = new Date(), toDate =
 
 exports.getChildDepartments = async (departmentId 
     , fromDate = new Date(), toDate = new Date()
-    , lang = 'ِA', childsDepth = -1, flatData = false )  => {
+    , lang = 'ِA', childDepth = -1, flat = false )  => {
 
     lang = lang.toUpperCase();
-    childsDepth = childsDepth === 0 ? -1 : childsDepth;
+    childDepth = childDepth === 0 ? -1 : childDepth;
 
     try {
-
-        const parentDepartment = await this.getDepartmentById(departmentId, fromDate, toDate, lang, childsDepth);
+        
+        const parentDepartment = await this.getDepartmentById(departmentId, fromDate, toDate, lang, childDepth);
 
         const childDepartments = [];
 
@@ -150,7 +150,7 @@ exports.getChildDepartments = async (departmentId
             && parentDepartment.childDepartments 
             && parentDepartment.childDepartments.length > 0) {
 
-            if (flatData) {
+            if (flat) {
 
                 let currentLevelChildDepartments = parentDepartment.childDepartments;
                 let nextLevelChildDepartments = [];
