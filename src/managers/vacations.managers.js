@@ -63,6 +63,8 @@ exports.getAllVacations = async (employeesIds = [],
                 return [];
             }
 
+            console.log(sapResults)
+
             let resultsVacations = parseVacations(sapResults['T_2001'], 2001);
             
             if(vacationsTypesIds.length > 0) {

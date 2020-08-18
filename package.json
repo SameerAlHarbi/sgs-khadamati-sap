@@ -8,17 +8,17 @@
     "dev": "env-cmd -f ./config/dev.prod.env nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sameer Mohammed Al Harbi",
   "license": "ISC",
   "dependencies": {
+    "@abujude/sgs-khadamati": "^1.2.6",
     "body-parser": "^1.19.0",
     "chalk": "^3.0.0",
-    "date-and-time": "^0.13.1",
     "express": "^4.17.1",
     "node-rfc": "^1.2.0"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.4"
   }
 }

@@ -2,44 +2,57 @@ const countriesManager = require('../managers/countries.managers');
 
 exports.getAllCountries = async (req, res, next) => {
     
-    const lang = req.query.lang;
+    const lang = req.query.lang || 'A';
 
     try {
-        let results = await countriesManager.getAllCountries(undefined, lang)
-        res.send(results);
+        
+        let results = await countriesManager
+            .getAllCountries(null, lang);
+        
+        res.json(results);
     } catch (e) {
-        console.log(e);
-        res.status(500).send();
+        e.httpStatusCode = 500;
+        return next(e);
     }
 }
 
 exports.getCountryByCode = async (req, res, next) => {
 
-        const code = req.params.code
-        const lang = req.query.lang;
+    const code = req.params.code;
+    const lang = req.query.lang || 'A';
+
+    try {   
+        const result  = await countriesManager
+            .getAllCountries(code, lang);
+
+        if(!result) {
+            const error = new Error();
+            error.httpStatusCode = 404;
+            return next(error);
+        }
+
+        return res.json(result);
     
-        try {   
-            const result  = await countriesManager.getAllCountries(code, lang);
-            if(result) {
-               return res.send(result);
-            }
-            res.status(404).send();
-     
-         } catch (e) {
-             res.status(500).send();
-         }
+    } catch (e) {
+        e.httpStatusCode = 500;
+        return next(e);
+    }
+
 }
 
 exports.getAllCities = async (req, res, next) => {
 
-    code = req.params.code;
-    const lang = req.query.lang;;
+    const code = req.params.code;
+    const lang = req.query.lang || 'A';
 
     try {
-        let results = await countriesManager.getAllCities(code, undefined, lang)
-        res.send(results);
+        const results = await countriesManager
+            .getAllCities(code, undefined, lang);
+
+        res.json(results);
     } catch (e) {
-        res.status(500).send();
+        e.httpStatusCode = 500;
+        return next(e);
     }
 }
 
@@ -47,17 +60,21 @@ exports.getAllCities = async (req, res, next) => {
 exports.getCityByCode = async (req, res, next) => {
 
     const { code, cityCode }  = req.params;
-    const lang = req.query.lang;;
+    const lang = req.query.lang || 'A';
 
     try {
-        let result  = await countriesManager.getAllCities(code, cityCode, lang);
-        if(result) {
-           return res.send(result);
+        let result  = await countriesManager
+            .getAllCities(code, cityCode, lang);
+
+        if(!result) {
+            const error = new Error();
+            error.httpStatusCode = 404;
+            return next(error);
         }
-        res.status(404).send();
- 
+        return res.json(result);
      } catch (e) {
-         res.status(500).send();
+        e.httpStatusCode = 500;
+        return next(e);
      }
 }
 

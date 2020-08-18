@@ -20,6 +20,9 @@ exports.getAllVacations = async (req, res) => {
 
     try {
 
+
+        console.log('ok');
+
         const results = await vacationsManager
             .getAllVacations(
                 employeesIdsCollection, 
