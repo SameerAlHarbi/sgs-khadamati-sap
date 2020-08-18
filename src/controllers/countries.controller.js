@@ -5,11 +5,12 @@ exports.getAllCountries = async (req, res, next) => {
     const lang = req.query.lang || 'A';
 
     try {
-        
-        let results = await countriesManager
+
+        const results = await countriesManager
             .getAllCountries(null, lang);
         
         res.json(results);
+
     } catch (e) {
         e.httpStatusCode = 500;
         return next(e);
@@ -22,6 +23,7 @@ exports.getCountryByCode = async (req, res, next) => {
     const lang = req.query.lang || 'A';
 
     try {   
+
         const result  = await countriesManager
             .getAllCountries(code, lang);
 
@@ -46,10 +48,12 @@ exports.getAllCities = async (req, res, next) => {
     const lang = req.query.lang || 'A';
 
     try {
+
         const results = await countriesManager
             .getAllCities(code, undefined, lang);
 
         res.json(results);
+
     } catch (e) {
         e.httpStatusCode = 500;
         return next(e);
@@ -63,7 +67,8 @@ exports.getCityByCode = async (req, res, next) => {
     const lang = req.query.lang || 'A';
 
     try {
-        let result  = await countriesManager
+
+        const result  = await countriesManager
             .getAllCities(code, cityCode, lang);
 
         if(!result) {
@@ -71,11 +76,11 @@ exports.getCityByCode = async (req, res, next) => {
             error.httpStatusCode = 404;
             return next(error);
         }
+
         return res.json(result);
+
      } catch (e) {
         e.httpStatusCode = 500;
         return next(e);
      }
 }
-
-
