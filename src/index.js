@@ -15,7 +15,6 @@ const errorController = require('./controllers/error.controller');
 
 //Express server
 const app = express();
-const port = process.env.PORT || 6000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
@@ -32,10 +31,11 @@ app.use(errorController.get404);
 app.use((error, req, res, next) => {
     error.httpStatusCode = error.httpStatusCode || 500;
     error.message = error.httpStatusCode !== 404 ? 
-        error.message : 'Data NotFound!';
+        error.message || '' : 'Data NotFound!';
     return res.status(error.httpStatusCode).json({ error : error.message });
 });
 
+const port = process.env.PORT || 6000;
 app.listen(port, () => {
     console.log(chalk.greenBright
         .inverse(`SGS KHADAMATI SAP SERVER IS UP AND RUNNING ON PORT ${port}`));
