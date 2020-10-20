@@ -7,8 +7,8 @@ exports.getAllCountries = async (code, lang) => {
 
     try {
         
-        const client = await sapPool.acquire();
-        let results = await client.call('Z_COUNTRY_NATIONALITY',{ IM_LANGU: lang });
+        const sapClient = await sapPool.acquire();
+        let results = await sapClient.call('Z_COUNTRY_NATIONALITY',{ IM_LANGU: lang });
         if(!results || !results['T_CONT_NATI']) {
             return code ? undefined : [];
         }
