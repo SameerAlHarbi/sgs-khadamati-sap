@@ -1,41 +1,52 @@
 const sapPool = require('../util/sap-rfc');
 const modelMapper = require('../models/model-mapper');
 
-exports.getAllCountries = async (code, lang) => {
+/**
+ * Get a list of all countries in SAP system or single country by code.
+ * @param {string} countryCode - Optional if you want a single country. 
+ * @param {string} lang - Results language.
+ */
+exports.getAllCountries = async (countryCode, lang = 'A') => {
 
-    lang = lang ? lang.toUpperCase() : 'A';
+    lang = lang.toUpperCase();
 
     try {
         
         const sapClient = await sapPool.acquire();
         let results = await sapClient.call('Z_COUNTRY_NATIONALITY',{ IM_LANGU: lang });
         if(!results || !results['T_CONT_NATI']) {
-            return code ? undefined : [];
+            return countryCode ? undefined : [];
         }
 
-        if(code) {   
-            let result = results['T_CONT_NATI'].find(c => c.LAND1.toLowerCase() === code.toLowerCase());
+        if(countryCode) {   
+            let result = results['T_CONT_NATI'].find(c => c.LAND1.toLowerCase() === countryCode.toLowerCase());
             return result ? modelMapper.mapCountryDTO(result) : undefined;
         }
-        return results['T_CONT_NATI'].map( result => modelMapper.mapCountryDTO(result));
+        return results['T_CONT_NATI'].map(result => modelMapper.mapCountryDTO(result));
 
     } catch (e) {
         throw new Error(e.message);
     }
 }
 
-exports.getAllCities = async (countryCode, cityCode, lang) => {
+/**
+ * Get a list of all cities in specified country by code.
+ * @param {string} countryCode - Country code.
+ * @param {string} cityCode - Optional if you want a single city by code.
+ * @param {string} lang - Results language.
+ */
+exports.getAllCities = async (countryCode, cityCode, lang = 'A') => {
 
     if(!countryCode) {
         throw new Error('country code is required!');
     }
 
     countryCode = countryCode.toUpperCase();
-    lang = lang ? lang.toUpperCase() : 'A';
+    lang = lang.toUpperCase();
 
     try {
-        const client = await sapPool.acquire();
-        let results = await client.call('Z_CITY_NAMES',{ IM_LAND: countryCode, IM_LANGU: lang });
+        const sapClient = await sapPool.acquire();
+        let results = await sapClient.call('Z_CITY_NAMES',{ IM_LAND: countryCode, IM_LANGU: lang });
 
         if(!results || !results['T_CITY']) {
             return cityCode ? undefined : [];
