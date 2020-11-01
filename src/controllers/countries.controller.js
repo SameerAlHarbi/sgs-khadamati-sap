@@ -7,7 +7,7 @@ exports.getAllCountries = async (req, res, next) => {
     try {
 
         const results = await countriesManager
-            .getAllCountries(null, lang);
+            .getAllCountries(lang);
         
         res.json(results);
 
@@ -25,7 +25,7 @@ exports.getCountryByCode = async (req, res, next) => {
     try {   
 
         const result  = await countriesManager
-            .getAllCountries(code, lang);
+            .getCountryByCode(code, lang);
 
         if(!result) {
             const error = new Error();
@@ -50,7 +50,7 @@ exports.getAllCities = async (req, res, next) => {
     try {
 
         const results = await countriesManager
-            .getAllCities(code, undefined, lang);
+            .getAllCities(code, lang);
 
         res.json(results);
 
@@ -69,7 +69,7 @@ exports.getCityByCode = async (req, res, next) => {
     try {
 
         const result  = await countriesManager
-            .getAllCities(code, cityCode, lang);
+            .getCityByCode(code, cityCode, lang);
 
         if(!result) {
             const error = new Error();

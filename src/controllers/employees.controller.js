@@ -6,24 +6,24 @@ const date = require('../util/date');
 exports.getAllEmployees = async (req, res, next) => {
 
     //extract query parametars data
-    const lang = req.query.lang;
+    const lang = req.query.lang || 'A';
     const employeesIds = req.query.employeesIds;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const status = req.query.status;
+    // const fromDateText = req.query.fromDate;
+    // const toDateText = req.query.toDate;
+    // const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+    // const status = req.query.status;
 
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    // const fromDateObject = date.parseDate(fromDateText, dateFormatText);
+    // const toDateObject = date.parseDate(toDateText, dateFormatText);
 
     const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
 
     try {
         
         let results = await employeesManager.getAllEmployeesInfo(employeesIdsCollection, 
-            fromDateObject, 
-            toDateObject, 
-            status, 
+            req.query.fromDate, 
+            req.query.toDate, 
+            req.query.status,
             lang);
 
         res.send(results);
