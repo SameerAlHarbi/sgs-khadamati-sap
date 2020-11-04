@@ -6,8 +6,8 @@ const date = require('../util/date');
 exports.getAllEmployees = async (req, res, next) => {
 
     //extract query parametars data
-    const lang = req.query.lang || 'A';
-    const employeesIds = req.query.employeesIds;
+    // const lang = req.query.lang || 'A';
+    // const employeesIds = req.query.employeesIds;
     // const fromDateText = req.query.fromDate;
     // const toDateText = req.query.toDate;
     // const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
