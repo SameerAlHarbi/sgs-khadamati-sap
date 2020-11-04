@@ -2,6 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
+const { queryMiddleware } = require('@abujude/sgs-khadamati');
 
 //Middlewares
 const authMiddleware = require('./middlewares/auth.middleware');
@@ -18,6 +19,16 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use((req, res, next) => {
+
+    // req.query.lang = req.query.lang.toUpperCase() || 'A';
+
+    next();
+
+});
+
+app.use(queryMiddleware.setLanguage);
 
 app.use('/countries', authMiddleware, countriesRouter);
 app.use('/employees', authMiddleware, employeesRouter);

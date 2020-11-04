@@ -11,7 +11,7 @@
   "author": "Sameer Mohammed Al Harbi",
   "license": "ISC",
   "dependencies": {
-    "@abujude/sgs-khadamati": "^1.2.7",
+    "@abujude/sgs-khadamati": "^1.2.9",
     "body-parser": "^1.19.0",
     "chalk": "^3.0.0",
     "express": "^4.17.1",

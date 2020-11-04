@@ -5,7 +5,7 @@ const date = require('../util/date');
 
 exports.getAllEmployees = async (req, res, next) => {
 
-    //extract query parametars data
+    // extract query parametars data
     // const lang = req.query.lang || 'A';
     // const employeesIds = req.query.employeesIds;
     // const fromDateText = req.query.fromDate;
@@ -16,14 +16,16 @@ exports.getAllEmployees = async (req, res, next) => {
     // const fromDateObject = date.parseDate(fromDateText, dateFormatText);
     // const toDateObject = date.parseDate(toDateText, dateFormatText);
 
-    const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
+    // const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
+
+    const { employeesIds, fromDate, toDate, status, lang} = req.query;
 
     try {
         
-        let results = await employeesManager.getAllEmployeesInfo(employeesIdsCollection, 
-            req.query.fromDate, 
-            req.query.toDate, 
-            req.query.status,
+        let results = await employeesManager.getAllEmployeesInfo(employeesIds, 
+            fromDate, 
+            toDate, 
+            status,
             lang);
 
         res.send(results);

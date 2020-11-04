@@ -2,7 +2,7 @@ const countriesManager = require('../managers/countries.managers');
 
 exports.getAllCountries = async (req, res, next) => {
     
-    const lang = req.query.lang || 'A';
+    const lang = req.query.lang;
 
     try {
 
@@ -20,7 +20,7 @@ exports.getAllCountries = async (req, res, next) => {
 exports.getCountryByCode = async (req, res, next) => {
 
     const code = req.params.code;
-    const lang = req.query.lang || 'A';
+    const lang = req.query.lang;
 
     try {   
 
@@ -45,7 +45,7 @@ exports.getCountryByCode = async (req, res, next) => {
 exports.getAllCities = async (req, res, next) => {
 
     const code = req.params.code;
-    const lang = req.query.lang || 'A';
+    const lang = req.query.lang;
 
     try {
 
@@ -64,7 +64,7 @@ exports.getAllCities = async (req, res, next) => {
 exports.getCityByCode = async (req, res, next) => {
 
     const { code, cityCode }  = req.params;
-    const lang = req.query.lang || 'A';
+    const lang = req.query.lang;
 
     try {
 
