@@ -1,7 +1,7 @@
 const Country = require('../models/country.model');
 const City = require('../models/city.model');
 const Employee = require('../models/employee.model');
-const date = require('../util/date');
+const { dateUtil } = require('@abujude/sgs-khadamati');
 
 exports.mapCountryDTO = (sapCountry) => {
     return new Country(sapCountry.LAND1,
@@ -28,11 +28,15 @@ exports.mapEmployeeDTO = (sapEmployee) => {
         sapEmployee.NACH2,
         sapEmployee.MIDNM,
         sapEmployee.NACHN,
-        date.convertFormat(sapEmployee.GBDAT),
+        dateUtil.convertFormat(sapEmployee.GBDAT
+            , dateUtil.defaultSapCompiledFormat
+            , dateUtil.defaultCompiledFormat),
         sapEmployee.ORGEH,
         sapEmployee.OSTEXT,
         sapEmployee.NATIO,
-        date.convertFormat(sapEmployee.BEGDA),
+        dateUtil.convertFormat(sapEmployee.BEGDA
+            , dateUtil.defaultSapCompiledFormat
+            , dateUtil.defaultCompiledFormat),
         sapEmployee.PGTXT,
         sapEmployee.CSTEXT,
         sapEmployee.CELL,
@@ -47,8 +51,12 @@ exports.mapEmployeeDTO = (sapEmployee) => {
         sapEmployee.TRFST,
         sapEmployee.CITYC,
         sapEmployee.BTEXT,
-        date.convertFormat(sapEmployee.FPDAT),
-        date.convertFormat(sapEmployee.EXPID));
+        dateUtil.convertFormat(sapEmployee.FPDAT
+            , dateUtil.defaultSapCompiledFormat
+            , dateUtil.defaultCompiledFormat),
+        dateUtil.convertFormat(sapEmployee.EXPID
+            , dateUtil.defaultSapCompiledFormat
+            , dateUtil.defaultCompiledFormat));
 
         return employee;
 

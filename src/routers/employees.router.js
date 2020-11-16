@@ -4,7 +4,7 @@ const {queryMiddleware} = require('@abujude/sgs-khadamati');
 
 const router = express.Router();
 
-// /employees?{employeesIds}&{fromDate}&{toDate}&{dateFormat}&{status=all|active|inactive|date}&lang=A => GET
+// /employees?{employeesIds}&{fromDate}&{toDate}&{dateFormat}&{status=all|active|inactive|date}&{lang=A} => GET
 router.get('/'
     // , queryMiddleware.parseDate([ 'fromDate', 'toDate'], 'dateFormat')
     , queryMiddleware.parseQuery
