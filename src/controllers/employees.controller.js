@@ -32,11 +32,12 @@ exports.getEmployeeById = async (req, res, next) => {
 
         if(isNaN(employeeId))
         {
-            return res.status(400).send({ error: 'Invalid Employee id!'});
+            const error = new Error('Invalid Employee id!');
+            error.httpStatusCode = 400;
+            return next(error);
         }
         
-        const result = await employeesManager
-            .getAllEmployeesInfo([employeeId], undefined, undefined, 'all', lang);
+        const result = await employeesManager.getEmployeeById(employeeId, lang);
 
         if(!result) {
             const error = new Error();
@@ -45,11 +46,6 @@ exports.getEmployeeById = async (req, res, next) => {
         }
 
         res.json(result);
-
-        // if(results && results.length > 0) {
-        //     return res.send(results[0]);
-        // }
-
     } catch(e) {
         e.httpStatusCode = 500;
         return next(e);
@@ -60,125 +56,136 @@ exports.getEmployeeById = async (req, res, next) => {
 exports.getEmployeeSalary = async (req, res, next) => {
 
     const employeeId = req.params.employeeId;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    const { fromDate, toDate } = req.query;
 
     try {
 
-        const result = await employeesManager.getEmployeeSalaryInfo(employeeId, fromDateObject, toDateObject,);
+        if(isNaN(employeeId))
+        {
+            const error = new Error('Invalid Employee id!');
+            error.httpStatusCode = 400;
+            return next(error);
+        }
+
+        const result = await employeesManager
+            .getEmployeeSalary(employeeId, fromDate, toDate,);
 
         if(!result) {
-           return res.status(404).send();
+            const error = new Error();
+            error.httpStatusCode = 404;
+            return next(error);
         }
 
         res.send(result);
     } catch(e) {
-        res.status(500).send();
+        e.httpStatusCode = 500;
+        return next(e);
     }
 }
 
 exports.getEmployeeManager = async (req, res, next) => {
 
     const employeeId = req.params.employeeId;
-    const lang = req.query.lang;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    const {fromDate, toDate, lang} = req.query;
 
     try {
 
-        const result = await employeesManager.getEmployeeManagerInfo(employeeId, fromDateObject, toDateObject, lang);
+        if(isNaN(employeeId))
+        {
+            const error = new Error('Invalid Employee id!');
+            error.httpStatusCode = 400;
+            return next(error);
+        }
+
+        const result = await employeesManager
+            .getEmployeeManager(employeeId, fromDate, toDate, lang);
 
         if(!result) {
-           return res.status(404).send();
+            const error = new Error();
+            error.httpStatusCode = 404;
+            return next(error);
         }
 
         res.send(result);
 
     } catch (e) {
-        res.status(500).send();
+        e.httpStatusCode = 500;
+        return next(e);
     }
 
 }
 
-exports.getEmployeeVacationsBalances = async (req, res) => {
+// exports.getEmployeeVacationsBalances = async (req, res) => {
 
-    const employeeId = req.params.employeeId;
-    const lang = req.query.lang;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const vacationsTypesIds = req.query.vacationsTypesIds;
+//     const employeeId = req.params.employeeId;
+//     const lang = req.query.lang;
+//     const fromDateText = req.query.fromDate;
+//     const toDateText = req.query.toDate;
+//     const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+//     const vacationsTypesIds = req.query.vacationsTypesIds;
 
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+//     const fromDateObject = date.parseDate(fromDateText, dateFormatText);
+//     const toDateObject = date.parseDate(toDateText, dateFormatText);
 
-    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+//     const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
 
-    try{
-        const results = await vacationsBalancesManager
-            .getAllVacationsBalances([employeeId],
-                 fromDateObject, 
-                 toDateObject, 
-                 vacationsTypesIdsCollection, lang);
-        return res.send(results);
-    } catch(e) {
-        res.status(500).send();
-    }
-}
+//     try{
+//         const results = await vacationsBalancesManager
+//             .getAllVacationsBalances([employeeId],
+//                  fromDateObject, 
+//                  toDateObject, 
+//                  vacationsTypesIdsCollection, lang);
+//         return res.send(results);
+//     } catch(e) {
+//         res.status(500).send();
+//     }
+// }
 
-exports.getEmployeeVacationsBalancesSummaries = async (req, res) => {
+// exports.getEmployeeVacationsBalancesSummaries = async (req, res) => {
 
-    const employeeId = req.params.employeeId;
-    const lang = req.query.lang;
-    const balanceDateText = req.query.balanceDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const vacationsTypesIds = req.query.vacationsTypesIds;
+//     const employeeId = req.params.employeeId;
+//     const lang = req.query.lang;
+//     const balanceDateText = req.query.balanceDate;
+//     const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+//     const vacationsTypesIds = req.query.vacationsTypesIds;
 
-    const balanceDateObject = date.parseDate(balanceDateText, dateFormatText);
+//     const balanceDateObject = date.parseDate(balanceDateText, dateFormatText);
 
-    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+//     const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
 
-    try {
+//     try {
 
-        const results = await vacationsBalancesManager
-            .getAllVacationsBalancesSummaries([employeeId], balanceDateObject, vacationsTypesIdsCollection, lang);
+//         const results = await vacationsBalancesManager
+//             .getAllVacationsBalancesSummaries([employeeId], balanceDateObject, vacationsTypesIdsCollection, lang);
 
-        res.send(results);
-    } catch(e) {
-        res.status(500).send();
-    }
-}
+//         res.send(results);
+//     } catch(e) {
+//         res.status(500).send();
+//     }
+// }
 
-exports.getEmployeeVacations = async (req, res) => {
+// exports.getEmployeeVacations = async (req, res) => {
 
-    const employeeId = req.params.employeeId;
-    const lang = req.query.lang;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const registerDateText = req.query.registerDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const vacationsTypesIds = req.query.vacationsTypesIds;
+//     const employeeId = req.params.employeeId;
+//     const lang = req.query.lang;
+//     const fromDateText = req.query.fromDate;
+//     const toDateText = req.query.toDate;
+//     const registerDateText = req.query.registerDate;
+//     const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
+//     const vacationsTypesIds = req.query.vacationsTypesIds;
 
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
-    const registerDateObject = date.parseDate(registerDateText, dateFormatText);
+//     const fromDateObject = date.parseDate(fromDateText, dateFormatText);
+//     const toDateObject = date.parseDate(toDateText, dateFormatText);
+//     const registerDateObject = date.parseDate(registerDateText, dateFormatText);
 
-    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+//     const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
 
-    try {
-        const results = await vacationsManager.getAllVacations([employeeId],
-            fromDateObject, toDateObject, registerDateObject, vacationsTypesIdsCollection, lang);
+//     try {
+//         const results = await vacationsManager.getAllVacations([employeeId],
+//             fromDateObject, toDateObject, registerDateObject, vacationsTypesIdsCollection, lang);
 
-        res.send(results);    
-    } catch(e) {
-        res.status(500).send();
-    }
-}
+//         res.send(results);    
+//     } catch(e) {
+//         res.status(500).send();
+//     }
+// }
