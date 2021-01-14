@@ -2,9 +2,9 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const chalk = require('chalk');
-const { queryMiddleware } = require('@abujude/sgs-khadamati');
 
 //Middlewares
+const { queryMiddleware } = require('@abujude/sgs-khadamati');
 const authMiddleware = require('./middlewares/auth.middleware');
 
 //Routers
