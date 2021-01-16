@@ -30,6 +30,8 @@ app.use((req, res, next) => {
 
 app.use(queryMiddleware.setLanguage('A', 'lang'));
 
+// app.use(authMiddleware);
+
 app.use('/countries', authMiddleware, countriesRouter);
 app.use('/employees', authMiddleware, employeesRouter);
 app.use('/departments', authMiddleware, departmentsRouter); 
