@@ -1,19 +1,22 @@
 const sapPool = require('../util/sap-rfc');
-const date = require('../util/date');
+const { dateUtil } = require('@abujude/sgs-khadamati');
 
-exports.getAllDepartments = async (fromDate = new Date(), toDate = new Date(), lang = 'ِA', flat = false) => {
+exports.getAllDepartments = async (fromDate = new Date()
+    , toDate = new Date()
+    , flat = false
+    , lang = 'ِA') => {
 
     lang = lang.toUpperCase();
 
     try {
 
-        const client = await sapPool.acquire();
-        let organizationData = await client.call('ZHR_FINGERPRINT_ORG_STRU',{ 
+        const sapClient = await sapPool.acquire();
+        let organizationData = await sapClient.call('ZHR_FINGERPRINT_ORG_STRU',{ 
             IM_OTYPE: 'O',
             IM_OBJID: '00000100',
             IM_PLVAR: '01',
-            IM_BEGDA: date.formatDate(fromDate, date.defaultSapCompiledDateFormat),
-            IM_ENDDA: date.formatDate(toDate, date.defaultSapCompiledDateFormat),
+            IM_BEGDA: dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat),
+            IM_ENDDA: date.formatDate(toDate, dateUtil.defaultSapCompiledFormat),
             IM_LANGU: lang
         });
 
@@ -90,13 +93,17 @@ exports.getAllDepartments = async (fromDate = new Date(), toDate = new Date(), l
     }
 }
 
-exports.getDepartmentById = async (departmentId, fromDate = new Date(), toDate = new Date(), lang = 'A', childsDepth = -1) => {
+exports.getDepartmentById = async (departmentId
+    , fromDate = new Date()
+    , toDate = new Date()
+    , childsDepth = -1
+    , lang = 'A') => {
 
     lang = lang.toUpperCase();
 
     try {
 
-        const flatDepartments = await this.getAllDepartments(fromDate, toDate, lang, true);
+        const flatDepartments = await this.getAllDepartments(fromDate, toDate, true, lang);
         const resultDepartment = flatDepartments.find(department => department.id === departmentId);
 
         if(resultDepartment && childsDepth !== 0) {
@@ -133,15 +140,18 @@ exports.getDepartmentById = async (departmentId, fromDate = new Date(), toDate =
 }
 
 exports.getChildDepartments = async (departmentId 
-    , fromDate = new Date(), toDate = new Date()
-    , lang = 'ِA', childDepth = -1, flat = false )  => {
+    , fromDate = new Date()
+    , toDate = new Date()
+    , flat = false
+    , childDepth = -1
+    , lang = 'ِA')  => {
 
     lang = lang.toUpperCase();
     childDepth = childDepth === 0 ? -1 : childDepth;
 
     try {
         
-        const parentDepartment = await this.getDepartmentById(departmentId, fromDate, toDate, lang, childDepth);
+        const parentDepartment = await this.getDepartmentById(departmentId, fromDate, toDate, childDepth, lang);
 
         const childDepartments = [];
 

@@ -1,15 +1,14 @@
 const employeesManager = require('../managers/employees.manager');
-const vacationsBalancesManager = require('../managers/vacations-balances.manager');
-const vacationsManager = require('../managers/vacations.managers');
-const date = require('../util/date');
+// const vacationsBalancesManager = require('../managers/vacations-balances.manager');
+// const vacationsManager = require('../managers/vacations.managers');
 
 exports.getAllEmployees = async (req, res, next) => {
 
-    const { employeesIds, fromDate, toDate, status, lang} = req.query;
+    const { employeesIds, fromDate, toDate, status, lang } = req.query;
 
     try {
         
-        let results = await employeesManager.getAllEmployees(employeesIds, 
+        const results = await employeesManager.getAllEmployees(employeesIds, 
             fromDate, 
             toDate, 
             status,
@@ -21,6 +20,7 @@ exports.getAllEmployees = async (req, res, next) => {
         e.httpStatusCode = 500;
         return next(e);
     }
+
 }
 
 exports.getEmployeeById = async (req, res, next) => {
@@ -46,11 +46,11 @@ exports.getEmployeeById = async (req, res, next) => {
         }
 
         res.json(result);
+        
     } catch(e) {
         e.httpStatusCode = 500;
         return next(e);
     }
-
 }
 
 exports.getEmployeeSalary = async (req, res, next) => {
@@ -76,7 +76,8 @@ exports.getEmployeeSalary = async (req, res, next) => {
             return next(error);
         }
 
-        res.send(result);
+        res.json(result);
+
     } catch(e) {
         e.httpStatusCode = 500;
         return next(e);
@@ -106,7 +107,7 @@ exports.getEmployeeManager = async (req, res, next) => {
             return next(error);
         }
 
-        res.send(result);
+        res.json(result);
 
     } catch (e) {
         e.httpStatusCode = 500;

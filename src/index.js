@@ -12,7 +12,7 @@ const countriesRouter = require('./routers/countries.router');
 const employeesRouter = require('./routers/employees.router');
 const departmentsRouter = require('./routers/departments.router');
 const vacationsRouter = require('./routers/vacations.router');
-const errorController = require('./controllers/error.controller');
+const errorsController = require('./controllers/errors.controller');
 
 //Express server
 const app = express();
@@ -37,8 +37,8 @@ app.use('/employees', authMiddleware, employeesRouter);
 app.use('/departments', authMiddleware, departmentsRouter); 
 app.use('/vacations', authMiddleware, vacationsRouter);
 
-app.use('/500', errorController.get500);
-app.use(errorController.get404);
+app.use('/500', errorsController.get500);
+app.use(errorsController.get404);
 
 //This middleware will be called directly whene ever we call next(Error)
 app.use((error, req, res, next) => {

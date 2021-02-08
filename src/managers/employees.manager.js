@@ -1,9 +1,8 @@
 const sapPool = require('../util/sap-rfc');
-const modelMapper = require('../models/model-mapper');
 const Employee = require('../models/employee.model');
 const Salary = require('../models/salary.model');
+const modelMapper = require('../models/model-mapper');
 const { dateUtil } = require('@abujude/sgs-khadamati');
-const Employee = require('../models/employee.model');
 
 /**
  * Get all employees in SAP system.
@@ -177,7 +176,10 @@ exports.getEmployeeManager = async (id,
     }
 }
 
-exports.getAllDepartmentEmployees = async (departmentCode, fromDate = new Date(), toDate = new Date(), lang = 'A') => {
+exports.getAllDepartmentEmployees = async (departmentCode
+    , fromDate = new Date()
+    , toDate = new Date()
+    , lang = 'A') => {
 
     try {
 
@@ -188,8 +190,8 @@ exports.getAllDepartmentEmployees = async (departmentCode, fromDate = new Date()
         const client = await sapPool.acquire();
         let results = await client.call('ZHR_PERSONS_SUB_ORG_UNITS', {
             IM_ORG_UNIT: departmentCode,
-            IM_BEGDA: date.formatDate(fromDate, date.defaultSapCompiledDateFormat),
-            IM_ENDDA: date.formatDate(toDate, date.defaultSapCompiledDateFormat)
+            IM_BEGDA: dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat),
+            IM_ENDDA: dateUtil.formatDate(toDate, dateUtil.defaultSapCompiledFormat)
         });
 
         if(!results || !results['T_ORG_UNITS']) {
@@ -203,6 +205,7 @@ exports.getAllDepartmentEmployees = async (departmentCode, fromDate = new Date()
         return employeesInfo;
 
     } catch (e) {
+        console.log(e);
         throw new Error(e.message);
     }
 }

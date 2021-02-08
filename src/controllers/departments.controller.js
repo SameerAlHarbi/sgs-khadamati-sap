@@ -1,83 +1,91 @@
 const departmentsManager = require('../managers/departments.manager');
 const employeesManager = require('../managers/employees.manager');
-const date = require('../util/date');
-
 
 exports.getAllDepartments = async (req, res, next) => {
-   
-    const lang = req.query.lang;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const flat = req.query.flat ? req.query.flat === 'true' : false;
 
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    const { fromDate, toDate, flat , lang } = req.query;
+    flat = flat ? req.query.flat === 'true' : false;
 
     try {
-        const results = await departmentsManager.getAllDepartments(fromDateObject, toDateObject, lang, flat);
-        res.send(results);
+
+        const results = await departmentsManager.getAllDepartments(fromDate, toDate, flat, lang);
+        res.json(results);
+
     } catch (e) {
-        res.status(500).send();
+        e.httpStatusCode = 500;
+        return next(e);
     }
+
 }
 
 exports.getDepartmentById = async (req, res, next) => {
 
-    const departmentId = req.params.id;
-    const lang = req.query.lang;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const childDepth = isNaN(req.query.childDepth) ? -1 : +req.query.childDepth;
-
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    const departmentId = req.params.departmentId;
+    const { fromDate, toDate, childDepth, lang } = req.query;
+    childDepth = isNaN(childDepth) ? -1 : +childDepth;
 
     try {
 
-        if(!departmentId) {
-            res.status(400).send({ error: 'Invalid department id!'});
+        if(isNaN(departmentId)) {
+            const error = new Error('Invalid department id!');
+            error.httpStatusCode = 400;
+            return next(error);
         }
 
-        const result = await departmentsManager.getDepartmentById(departmentId, fromDateObject, toDateObject, lang, childDepth);
+        const result = await departmentsManager.getDepartmentById(departmentId
+            , fromDate
+            , toDate
+            , childDepth
+            , lang);
 
-        if(result) {
-            return res.send(result);
+        if(!result) {
+            const error = new Error();
+            error.httpStatusCode = 404;
+            return next(error);
         }
 
-        res.status(404).send();
+        res.json(result);
+
     } catch(e) {
-        res.status(500).send();
+        e.httpStatusCode = 500;
+        return next(e);
     }
 }
 
 exports.getChildDepartments = async (req, res, next) => {
     
-    const departmentId = req.params.id;
-    const lang = req.query.lang;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const childDepth = isNaN(req.query.childDepth)  ? -1 : +req.query.childDepth;
-    const flat = req.query.flat ? req.query.flat === 'true' : false;
-
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    const departmentId = req.params.departmentId;
+    const { fromDate, toDate, flat, childDepth, lang } = req.query;
+    flat = flat ? req.query.flat === 'true' : false;
+    childDepth = isNaN(childDepth) ? -1 : +childDepth;
 
     try {
 
-        const results = await departmentsManager.getChildDepartments(departmentId, fromDateObject, toDateObject, lang, childDepth, flat);
-        res.send(results);
+        if(isNaN(departmentId)) {
+            const error = new Error('Invalid department id!');
+            error.httpStatusCode = 400;
+            return next(error);
+        }
+
+        const results = await departmentsManager.getChildDepartments(departmentId
+            , fromDate
+            , toDate
+            , flat
+            , childDepth
+            , lang);
+
+        res.json(results);
 
     } catch(e) {
-        res.status(500).send();
+        e.httpStatusCode  = 500;
+        return next(e);
     }
+
 }
 
 exports.getDepartmentEmployees = async (req, res, next) => {
 
-    const departmentId = req.params.id;
+    const departmentId = req.params.departmentId;
     const lang = req.query.lang;
     const fromDateText = req.query.fromDate;
     const toDateText = req.query.toDate;
@@ -96,6 +104,7 @@ exports.getDepartmentEmployees = async (req, res, next) => {
         res.send(result);
 
     } catch (e) {
-        res.status(500).send();
+        e.httpStatusCode  = 500;
+        return next(e);
     }
 }
