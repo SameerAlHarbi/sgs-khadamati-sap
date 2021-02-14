@@ -11,76 +11,76 @@ exports.getAllCountries = async (req, res, next) => {
         
         res.json(results);
 
-    } catch (e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch (error) {
+        error.httpStatusCode = 500;
+        return next(error);
     }
 }
 
 exports.getCountryByCode = async (req, res, next) => {
 
-    const code = req.params.code;
+    const countryCode = req.params.countryCode;
     const lang = req.query.lang;
 
     try {   
 
         const result  = await countriesManager
-            .getCountryByCode(code, lang);
+            .getCountryByCode(countryCode, lang);
 
         if(!result) {
             const error = new Error();
             error.httpStatusCode = 404;
-            return next(error);
+            throw error;
         }
 
         return res.json(result);
     
-    } catch (e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch (error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
     }
 
 }
 
 exports.getAllCities = async (req, res, next) => {
 
-    const code = req.params.code;
+    const countryCode = req.params.countryCode;
     const lang = req.query.lang;
 
     try {
 
         const results = await countriesManager
-            .getAllCities(code, lang);
+            .getAllCities(countryCode, lang);
 
         res.json(results);
 
-    } catch (e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch (error) {
+        error.httpStatusCode = 500;
+        return next(error);
     }
 }
 
 
 exports.getCityByCode = async (req, res, next) => {
 
-    const { code, cityCode }  = req.params;
+    const { countryCode, cityCode }  = req.params;
     const lang = req.query.lang;
 
     try {
 
         const result  = await countriesManager
-            .getCityByCode(code, cityCode, lang);
+            .getCityByCode(countryCode, cityCode, lang);
 
         if(!result) {
             const error = new Error();
             error.httpStatusCode = 404;
-            return next(error);
+            throw error;
         }
 
         return res.json(result);
 
-     } catch (e) {
-        e.httpStatusCode = 500;
-        return next(e);
+     } catch (error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
      }
 }

@@ -6,14 +6,14 @@ const { dateUtil } = require('@abujude/sgs-khadamati');
 
 /**
  * Get all employees in SAP system.
- * @param {Array<string>} ids Array of employees ids to filter results.
+ * @param {Array<string>} employeesIds Array of employees ids to filter results.
  * @param {Date} fromDate History data start date.
  * @param {Date} toDate History data end date.
  * @param {string} status  Status of employees
  * @param {string} lang Results language.
  * @return {Array<Employee>} Employees information.
  */
-exports.getAllEmployees = async (ids = [], 
+exports.getAllEmployees = async (employeesIds = [], 
     fromDate = new Date(), 
     toDate = new Date(), 
     status = 'date', 
@@ -39,7 +39,7 @@ exports.getAllEmployees = async (ids = [],
     try {
 
         const sapParams = { 
-            IM_PERNR: ids,
+            IM_PERNR: employeesIds,
             IM_BEGDA: dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat),
             IM_ENDDA: dateUtil.formatDate(toDate, dateUtil.defaultSapCompiledFormat),
             IM_LANGU: lang
@@ -57,8 +57,8 @@ exports.getAllEmployees = async (ids = [],
 
         return results['T_EMPDATA'].map(result => modelMapper.mapEmployeeDTO(result));
 
-    } catch (e) {
-        throw new Error(e.message);
+    } catch (error) {
+        throw error;
     }
 }
 

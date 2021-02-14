@@ -6,13 +6,13 @@ const Router = express.Router();
 // /countries?lang=A => GET
 Router.get('/', countriesController.getAllCountries);
 
-// /countries/{code}?lang=A => GET
-Router.get('/:code', countriesController.getCountryByCode);
+// /countries/{countryCode}?lang=A => GET
+Router.get('/:countryCode', countriesController.getCountryByCode);
 
-// /countries/{code}/cities?lang=A => GET
-Router.get('/:code/cities', countriesController.getAllCities);
+// /countries/{countryCode}/cities?lang=A => GET
+Router.get('/:countryCode/cities', countriesController.getAllCities);
 
-// /countries/{code}/cities/{cityCode}?lang=A => GET
-Router.get('/:code/cities/:cityCode', countriesController.getCityByCode);
+// /countries/{countryCode}/cities/{cityCode}?lang=A => GET
+Router.get('/:countryCode/cities/:cityCode', countriesController.getCityByCode);
 
 module.exports = Router;

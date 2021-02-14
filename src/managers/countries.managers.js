@@ -22,8 +22,8 @@ exports.getAllCountries = async (lang = 'A') => {
 
         return results['T_CONT_NATI'].map(result => modelMapper.mapCountryDTO(result));
 
-    } catch (e) {
-        throw new Error(e.message);
+    } catch (error) {
+        throw error;
     }
 }
 
@@ -31,7 +31,7 @@ exports.getAllCountries = async (lang = 'A') => {
  * Get country object by country code.
  * @param {string} countryCode - Country code.
  * @param {string} lang - Results language.
- * @return {Country} - Country object.
+ * @return {Country} Country object.
  */
 exports.getCountryByCode = async (countryCode, lang = 'A') => {
 
@@ -45,8 +45,8 @@ exports.getCountryByCode = async (countryCode, lang = 'A') => {
         let result = results.find(c => c.code.toLowerCase() === countryCode.toLowerCase());
         return result;
 
-    } catch(e) {
-        throw new Error(e.message);
+    } catch(error) {
+        throw error;
     }
 }
 
@@ -75,8 +75,8 @@ exports.getAllCities = async (countryCode, lang = 'A') => {
 
         return results['T_CITY'].map( result => modelMapper.mapCityDTO(result));
 
-    } catch (e) {
-        throw new Error(e.message);
+    } catch (error) {
+        throw error;
     }
 }
 
@@ -85,7 +85,7 @@ exports.getAllCities = async (countryCode, lang = 'A') => {
  * @param {string} countryCode - Country code.
  * @param {string} cityCode - City code.
  * @param {string} lang - Results language.
- * @return {City} - City object.
+ * @return {City} City object.
  */
 exports.getCityByCode = async (countryCode, cityCode, lang = 'A') => {
 
@@ -99,8 +99,8 @@ exports.getCityByCode = async (countryCode, cityCode, lang = 'A') => {
         let result = results.find(c => c.code.toLowerCase() === cityCode.toLowerCase());
         return result;
 
-    } catch(e) {
-        throw new Error(e.message);
+    } catch(error) {
+        throw error;
     }
 
 }

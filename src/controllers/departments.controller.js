@@ -8,12 +8,13 @@ exports.getAllDepartments = async (req, res, next) => {
 
     try {
 
-        const results = await departmentsManager.getAllDepartments(fromDate, toDate, flat, lang);
+        const results = await departmentsManager
+            .getAllDepartments(fromDate, toDate, flat, lang);
         res.json(results);
 
-    } catch (e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch (error) {
+        error.httpStatusCode = 500;
+        return next(error);
     }
 
 }
@@ -29,7 +30,7 @@ exports.getDepartmentById = async (req, res, next) => {
         if(isNaN(departmentId)) {
             const error = new Error('Invalid department id!');
             error.httpStatusCode = 400;
-            return next(error);
+            throw error;
         }
 
         const result = await departmentsManager.getDepartmentById(departmentId
@@ -41,14 +42,14 @@ exports.getDepartmentById = async (req, res, next) => {
         if(!result) {
             const error = new Error();
             error.httpStatusCode = 404;
-            return next(error);
+            throw error;
         }
 
         res.json(result);
 
-    } catch(e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch(error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
     }
 }
 
@@ -64,7 +65,7 @@ exports.getChildDepartments = async (req, res, next) => {
         if(isNaN(departmentId)) {
             const error = new Error('Invalid department id!');
             error.httpStatusCode = 400;
-            return next(error);
+            throw error;
         }
 
         const results = await departmentsManager.getChildDepartments(departmentId
@@ -76,9 +77,9 @@ exports.getChildDepartments = async (req, res, next) => {
 
         res.json(results);
 
-    } catch(e) {
-        e.httpStatusCode  = 500;
-        return next(e);
+    } catch(error) {
+        error.httpStatusCode  = error.httpStatusCode || 500;
+        return next(error);
     }
 
 }
@@ -103,8 +104,8 @@ exports.getDepartmentEmployees = async (req, res, next) => {
 
         res.send(result);
 
-    } catch (e) {
-        e.httpStatusCode  = 500;
-        return next(e);
+    } catch (error) {
+        error.httpStatusCode  = 500;
+        return next(error);
     }
 }

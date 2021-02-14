@@ -16,9 +16,9 @@ exports.getAllEmployees = async (req, res, next) => {
 
         res.json(results);
 
-    } catch (e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch (error) {
+        error.httpStatusCode = 500;
+        return next(error);
     }
 
 }
@@ -34,7 +34,7 @@ exports.getEmployeeById = async (req, res, next) => {
         {
             const error = new Error('Invalid Employee id!');
             error.httpStatusCode = 400;
-            return next(error);
+            throw error;
         }
         
         const result = await employeesManager.getEmployeeById(employeeId, lang);
@@ -42,14 +42,14 @@ exports.getEmployeeById = async (req, res, next) => {
         if(!result) {
             const error = new Error();
             error.httpStatusCode = 404;
-            return next(error);
+            throw error;
         }
 
         res.json(result);
         
-    } catch(e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch(error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
     }
 }
 
@@ -64,7 +64,7 @@ exports.getEmployeeSalary = async (req, res, next) => {
         {
             const error = new Error('Invalid Employee id!');
             error.httpStatusCode = 400;
-            return next(error);
+            throw error;
         }
 
         const result = await employeesManager
@@ -73,14 +73,14 @@ exports.getEmployeeSalary = async (req, res, next) => {
         if(!result) {
             const error = new Error();
             error.httpStatusCode = 404;
-            return next(error);
+            throw error;
         }
 
         res.json(result);
 
-    } catch(e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch(error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
     }
 }
 
@@ -95,7 +95,7 @@ exports.getEmployeeManager = async (req, res, next) => {
         {
             const error = new Error('Invalid Employee id!');
             error.httpStatusCode = 400;
-            return next(error);
+            throw error;
         }
 
         const result = await employeesManager
@@ -104,16 +104,16 @@ exports.getEmployeeManager = async (req, res, next) => {
         if(!result) {
             const error = new Error();
             error.httpStatusCode = 404;
-            return next(error);
+            throw error;
         }
 
         res.json(result);
 
-    } catch (e) {
-        e.httpStatusCode = 500;
-        return next(e);
+    } catch (error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
     }
-
+    
 }
 
 // exports.getEmployeeVacationsBalances = async (req, res) => {
