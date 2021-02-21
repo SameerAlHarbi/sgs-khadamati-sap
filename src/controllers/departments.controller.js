@@ -87,25 +87,19 @@ exports.getChildDepartments = async (req, res, next) => {
 exports.getDepartmentEmployees = async (req, res, next) => {
 
     const departmentId = req.params.departmentId;
-    const lang = req.query.lang;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
+    const {fromDate, toDate, lang} = req.query;
 
     try {
 
-        const result = await employeesManager.getAllDepartmentEmployees(departmentId,
-             fromDateObject,
-             toDateObject,
+        const result = await departmentsManager.getAllDepartmentEmployees(departmentId,
+             fromDate,
+             toDate,
              lang);
 
-        res.send(result);
+        res.json(result);
 
     } catch (error) {
-        error.httpStatusCode  = 500;
+        error.httpStatusCode  = error.httpStatusCode || 500;
         return next(error);
     }
 }

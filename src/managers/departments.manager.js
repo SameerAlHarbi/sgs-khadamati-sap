@@ -1,5 +1,6 @@
 const sapPool = require('../util/sap-rfc');
 const { dateUtil } = require('@abujude/sgs-khadamati');
+const employeesManager = require('./employees.manager');
 
 exports.getAllDepartments = async (fromDate = new Date()
     , toDate = new Date()
@@ -11,12 +12,12 @@ exports.getAllDepartments = async (fromDate = new Date()
     try {
 
         const sapClient = await sapPool.acquire();
-        let organizationData = await sapClient.call('ZHR_FINGERPRINT_ORG_STRU',{ 
+        const organizationData = await sapClient.call('ZHR_FINGERPRINT_ORG_STRU',{ 
             IM_OTYPE: 'O',
             IM_OBJID: '00000100',
             IM_PLVAR: '01',
             IM_BEGDA: dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat),
-            IM_ENDDA: date.formatDate(toDate, dateUtil.defaultSapCompiledFormat),
+            IM_ENDDA: dateUtil.formatDate(toDate, dateUtil.defaultSapCompiledFormat),
             IM_LANGU: lang
         });
 
@@ -88,8 +89,8 @@ exports.getAllDepartments = async (fromDate = new Date()
 
         return departmentsResult;
 
-    } catch(e) {
-        throw new Error(e.message);
+    } catch(error) {
+        throw error;
     }
 }
 
@@ -98,6 +99,10 @@ exports.getDepartmentById = async (departmentId
     , toDate = new Date()
     , childsDepth = -1
     , lang = 'A') => {
+
+    if(!departmentId) {
+        throw new Error('Invalid department id!');
+    }
 
     lang = lang.toUpperCase();
 
@@ -133,8 +138,8 @@ exports.getDepartmentById = async (departmentId
 
         return resultDepartment;
 
-    } catch(e) {
-        throw new Error(e.message);
+    } catch(error) {
+        throw error;
     }
 
 }
@@ -145,6 +150,10 @@ exports.getChildDepartments = async (departmentId
     , flat = false
     , childDepth = -1
     , lang = 'ِA')  => {
+
+    if(!departmentId) {
+        throw new Error('Invalid department id!');
+    }
 
     lang = lang.toUpperCase();
     childDepth = childDepth === 0 ? -1 : childDepth;
@@ -183,8 +192,39 @@ exports.getChildDepartments = async (departmentId
         }
 
         return childDepartments;
-    } catch (e) {
-        console.log(e)
-        throw new Error(e.message);
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.getAllDepartmentEmployees = async (departmentId
+    , fromDate = new Date()
+    , toDate = new Date()
+    , lang = 'A') => {
+
+    if(!departmentId) {
+        throw new Error('Invalid department id!');
+    }
+
+    try {
+
+        const sapClient = await sapPool.acquire();
+        let results = await sapClient.call('ZHR_PERSONS_SUB_ORG_UNITS', {
+            IM_ORG_UNIT: departmentId,
+            IM_BEGDA: dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat),
+            IM_ENDDA: dateUtil.formatDate(toDate, dateUtil.defaultSapCompiledFormat)
+        });
+
+        if(!results || !results['T_ORG_UNITS']) {
+            return [];
+        }
+
+        const employeesIds = results['T_ORG_UNITS'].filter( r => r.OTYPE === 'P').map(r => r.OBJID);
+
+        const employeesInfo = await employeesManager.getAllEmployees(employeesIds, fromDate, toDate, undefined, lang);
+        return employeesInfo;
+
+    } catch (error) {
+        throw error;
     }
 }

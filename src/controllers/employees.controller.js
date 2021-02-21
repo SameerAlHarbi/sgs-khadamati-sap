@@ -17,7 +17,7 @@ exports.getAllEmployees = async (req, res, next) => {
         res.json(results);
 
     } catch (error) {
-        error.httpStatusCode = 500;
+        error.httpStatusCode = error.httpStatusCode || 500;
         return next(error);
     }
 
