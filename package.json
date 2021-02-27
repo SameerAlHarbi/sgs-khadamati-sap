@@ -5,7 +5,8 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/dev.prod.env nodemon src/index.js"
+    "dev": "env-cmd -f ./config/dev.prod.env nodemon src/index.js",
+    "test": "node playground/app.js"
   },
   "keywords": [],
   "author": "Sameer Mohammed Al Harbi",
