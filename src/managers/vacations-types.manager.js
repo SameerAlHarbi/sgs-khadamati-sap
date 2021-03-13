@@ -6,8 +6,9 @@ exports.getAllVacationsTypes = async (workSystem = 'ALL',lang = 'A') => {
     workSystem = workSystem.toUpperCase();
 
     try{
-        const client = await sapPool.acquire();
-        let sapResults = await client.call('ZHR_ATTENDANCE_ABSENCE_TYPES',{ 
+        
+        const sapClient = await sapPool.acquire();
+        const sapResults = await sapClient.call('ZHR_ATTENDANCE_ABSENCE_TYPES', { 
             IM_LANGU: lang
         });
 
@@ -40,7 +41,9 @@ exports.getAllVacationsTypes = async (workSystem = 'ALL',lang = 'A') => {
         }
 
         return results;
-    } catch (e) {
-        throw new Error(e.message);
+
+    } catch (error) {
+        throw error;
     }
+
 };

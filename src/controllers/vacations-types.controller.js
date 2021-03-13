@@ -1,14 +1,19 @@
 const vacationsTypesManager = require('../managers/vacations-types.manager');
 
-exports.getAllVacationsTypes = async (req, res) => {
+exports.getAllVacationsTypes = async (req, res, next) => {
 
     const lang = req.query.lang;
     const workSystem = req.query.workSystem;
 
-    try{
-        let results = await vacationsTypesManager.getAllVacationsTypes(workSystem,lang);
-        return res.send(results);
-    } catch(e) {
-        res.status(500).send();
+    try {
+
+        const results = await vacationsTypesManager
+            .getAllVacationsTypes(workSystem,lang);
+        
+        return res.json(results);
+
+    } catch(error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);   
     }
 }

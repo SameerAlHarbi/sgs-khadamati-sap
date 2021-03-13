@@ -1,59 +1,51 @@
 const vacationsBalancesManager = require('../managers/vacations-balances.manager');
-const date = require('../util/date');
 
-exports.getAllVacationsBalances = async (req, res) => {
+exports.getAllVacationsBalances = async (req, res, next) => {
 
-    const lang = req.query.lang;
-    const employeesIds = req.query.employeesIds;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const vacationsTypesIds = req.query.vacationsTypesIds;
-
-    const fromDateObject = date.parseDate(fromDateText, dateFormatText);
-    const toDateObject = date.parseDate(toDateText, dateFormatText);
-
-    const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
-    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+    const { employeesIds
+            , vacationsTypes
+            , fromDate
+            , toDate
+            , lang } = req.query;
 
     try {
-        let results = await vacationsBalancesManager
-            .getAllVacationsBalances(employeesIdsCollection,
-                     fromDateObject,
-                     toDateObject, 
-                     vacationsTypesIdsCollection, 
-                     lang);
 
-        res.send(results);
-    } catch (e) {
-        res.status(500).send();
+        const results = await vacationsBalancesManager
+            .getAllVacationsBalances(employeesIds
+                , fromDate
+                , toDate
+                , vacationsTypes
+                , lang);
+        
+        res.json(results);
+
+    } catch (error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
     }
 
 }
 
-exports.getAllVacationsBalancesSummaries = async (req, res) => {
+exports.getAllVacationsBalancesSummaries = async (req, res, next) => {
 
-    const lang = req.query.lang;
-    const employeesIds = req.query.employeesIds;
-    const balanceDateText = req.query.balanceDate;
-    const dateFormatText = req.query.dateFormat || date.defaultApiDateFormatText;
-    const vacationsTypesIds = req.query.vacationsTypesIds;
-
-    const balanceDateObject = date.parseDate(balanceDateText, dateFormatText);
-
-    const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
-    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+    const {employeesIds
+            , vacationsTypes
+            , balanceDate
+            , lang} = req.query.lang;
 
     try {
-        let results = await vacationsBalancesManager
-            .getAllVacationsBalancesSummaries(employeesIdsCollection,
-                 balanceDateObject,
-                 vacationsTypesIdsCollection,
-                 lang);
+
+        const results = await vacationsBalancesManager
+            .getAllVacationsBalancesSummaries(employeesIds
+                , vacationsTypes
+                , balanceDate
+                , lang);
                  
-        res.send(results);
-    } catch (e) {
-        res.status(500).send();
+        res.json(results);
+
+    } catch (error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
     }
 
 }

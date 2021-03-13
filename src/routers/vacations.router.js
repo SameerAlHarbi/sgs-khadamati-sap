@@ -1,15 +1,33 @@
 const express = require('express');
+
 const vacationsTypesController = require('../controllers/vacations-types.controller');
 const vacationsBalancesController = require('../controllers/vacations-balances.controller');
 const vacationsController = require('../controllers/vacations.controller');
 
-const router = express.Router();
+const { queryMiddleware } = require('@abujude/sgs-khadamati');
 
-router.get('/', vacationsController.getAllVacations);
-router.get('/types', vacationsTypesController.getAllVacationsTypes);
-router.get('/balances', vacationsBalancesController.getAllVacationsBalances);
-router.get('/balances/summary', vacationsBalancesController.getAllVacationsBalancesSummaries);
-router.post('/validate', vacationsController.validateEmployeeVacation);
-router.post('/create', vacationsController.createEmployeeVacation);
+const Router = express.Router();
 
-module.exports = router;
+Router.get('/'
+    , vacationsController.getAllVacations);
+
+Router.get('/types'
+    , vacationsTypesController.getAllVacationsTypes);
+
+Router.get('/balances'
+    , queryMiddleware.split(['employeesIds','vacationsTypes'])
+    , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
+    , vacationsBalancesController.getAllVacationsBalances);
+
+Router.get('/balances/summary'
+    , queryMiddleware.split(['employeesIds','vacationsTypes'])
+    , queryMiddleware.parseDate(['balanceDate'], 'dateFormat')
+    , vacationsBalancesController.getAllVacationsBalancesSummaries);
+
+Router.post('/validate'
+    , vacationsController.validateEmployeeVacation);
+
+Router.post('/create'
+    , vacationsController.createEmployeeVacation);
+
+module.exports = Router;

@@ -1,22 +1,22 @@
 const sapPool = require('../util/sap-rfc');
+const { dateUtil } = require('@abujude/sgs-khadamati');
 const vacationsTypesManager = require('./vacations-types.manager');
-const date = require('../util/date');
 
-exports.getAllVacationsBalances = async (employeesIds = [],
-     fromDate = new Date(),
-     toDate = new Date(), 
-     vacationsTypesIds = [],
-     lang = 'A') => {
+exports.getAllVacationsBalances = async (employeesIds = []
+     , fromDate = new Date()
+     , toDate = new Date()
+     , vacationsTypes = []
+     , lang = 'A') => {
 
     lang = lang.toUpperCase();
 
     try {
 
-        const client = await sapPool.acquire();
-        const sapResults = await client.call('ZHR_FINGERPRINT_ABSENCE_QUOTAS', {
+        const sapClient = await sapPool.acquire();
+        const sapResults = await sapClient.call('ZHR_FINGERPRINT_ABSENCE_QUOTAS', {
             IM_PERNR: employeesIds,
-            IM_BEGDA: date.formatDate(fromDate, date.defaultSapCompiledDateFormat),
-            IM_ENDDA: date.formatDate(toDate, date.defaultSapCompiledDateFormat),
+            IM_BEGDA: dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat),
+            IM_ENDDA: dateUtil.formatDate(toDate, dateUtil.defaultSapCompiledFormat),
             IM_LANGU: lang
         });
 
@@ -24,13 +24,19 @@ exports.getAllVacationsBalances = async (employeesIds = [],
             return [];
         }
 
-        let resultBalances = sapResults['T_QUOTAS'].map(balance => (
+        const resultBalances = sapResults['T_QUOTAS'].map(balance => (
             {
                 id: balance.KTART,
                 employeeId: +balance.PERNR,
                 description: balance.KTEXT,
-                startDate: balance.BEGDA && !balance.BEGDA.includes('9999') ? date.convertFormat(balance.BEGDA) : '',
-                endDate: balance.ENDDA && !balance.ENDDA.includes('9999') ? date.convertFormat(balance.ENDDA) : '',
+                startDate: balance.BEGDA && !balance.BEGDA.includes('9999') ? 
+                         dateUtil.convertFormat(balance.BEGDA
+                            , dateUtil.defaultSapCompiledFormat
+                            , dateUtil.defaultCompiledFormat) : '',
+                endDate: balance.ENDDA && !balance.ENDDA.includes('9999') ?
+                         dateUtil.convertFormat(balance.ENDDA
+                            , dateUtil.defaultSapCompiledFormat
+                            , dateUtil.defaultCompiledFormat) : '',
                 open: +balance.ANZHL,
                 used: +balance.KVERB,
                 current: +balance.DNZHL,
@@ -38,11 +44,12 @@ exports.getAllVacationsBalances = async (employeesIds = [],
             }
         ));
 
-        return vacationsTypesIds.length > 0 ? resultBalances.filter(balance => 
+        return vacationsTypes.length > 0 ? resultBalances.filter(balance => 
             balance.vacationsTypesIds.split(',')
-            .filter(vt => vacationsTypesIds.indexOf(vt) >= 0).length > 0) : resultBalances;
-    } catch(e) {
-        throw new Error(e.message);
+            .filter(vt => vacationsTypes.indexOf(vt) >= 0).length > 0) : resultBalances;
+
+    } catch(error) {
+        throw error;
     }
 }
 
@@ -72,11 +79,11 @@ getBalancesSummaries = (balancesList) => {
                 .forEach(b => {
 
                     if(b.startDate) {
-                        startDates.push(date.parseDate(b.startDate, date.defaultApiCompiledDateFormat));
+                        startDates.push(dateUtil.parseDate(b.startDate, dateUtil.defaultCompiledFormat));
                     }
 
                     if(b.endDate) {
-                        endDates.push(date.parseDate(b.endDate, date.defaultApiCompiledDateFormat));
+                        endDates.push(dateUtil.parseDate(b.endDate, dateUtil.defaultCompiledFormat));
                     }
 
                 });
@@ -88,8 +95,8 @@ getBalancesSummaries = (balancesList) => {
             });
 
             let result = Object.assign({}, balance);
-            result.startDate = startDates.length > 0 ? date.formatDate(new Date(Math.min.apply( null, startDates))) : '';
-            result.endDate = endDates.length > 0 ? date.formatDate(new Date(Math.max.apply( null, endDates))) : '';
+            result.startDate = startDates.length > 0 ? dateUtil.formatDate(new Date(Math.min.apply( null, startDates))) : '';
+            result.endDate = endDates.length > 0 ? dateUtil.formatDate(new Date(Math.max.apply( null, endDates))) : '';
             result.open = totalOpenBalance;
             result.used = totalUsedBalance;
             result.current = totalCurrentBalance;
@@ -101,10 +108,10 @@ getBalancesSummaries = (balancesList) => {
     return resultSummaries;
 }
 
-exports.getAllVacationsBalancesSummaries = async (
-    employeesIds = [],
-    balanceDate = new Date(),
-    vacationsTypesIds = [],lang = 'A') => {
+exports.getAllVacationsBalancesSummaries = async (employeesIds = []
+    , vacationsTypesIds = []
+    , balanceDate = new Date()
+    , lang = 'A') => {
 
         try {
 
@@ -114,7 +121,7 @@ exports.getAllVacationsBalancesSummaries = async (
                 , vacationsTypesIds
                 , lang);
 
-                if(!vacationsBalances || vacationsBalances.length < 1) {
+                if(vacationsBalances.length < 1) {
                     return [];
                 }
 
@@ -170,8 +177,7 @@ exports.getAllVacationsBalancesSummaries = async (
 
               return resultsSummary;  
 
-        } catch (e) {
-            console.log(e);
-            throw new Error(e.message);
+        } catch (error) {
+            throw error;
         }
 }
