@@ -28,10 +28,10 @@ exports.getAllVacationsBalances = async (req, res, next) => {
 
 exports.getAllVacationsBalancesSummaries = async (req, res, next) => {
 
-    const {employeesIds
+    const { employeesIds
             , vacationsTypes
             , balanceDate
-            , lang} = req.query.lang;
+            , lang } = req.query;
 
     try {
 

@@ -1,120 +1,108 @@
 const vacationsManager = require('../managers/vacations.managers');
-const dateUtil = require('../util/date');
+const { dateUtil } = require('@abujude/sgs-khadamati');
 
-exports.getAllVacations = async (req, res) => {
+exports.getAllVacations = async (req, res, next) => {
 
-    const lang = req.query.lang;
-    const employeesIds = req.query.employeesIds;
-    const fromDateText = req.query.fromDate;
-    const toDateText = req.query.toDate;
-    const registerDateText = req.query.registerDate;
-    const dateFormatText = req.query.dateFormat || dateUtil.defaultApiDateFormatText;
-    const vacationsTypesIds = req.query.vacationsTypesIds;
-
-    const fromDateObject = dateUtil.parseDate(fromDateText, dateFormatText);
-    const toDateObject = dateUtil.parseDate(toDateText, dateFormatText);
-    const registerDateObject = dateUtil.parseDate(registerDateText, dateFormatText);
-
-    const employeesIdsCollection = employeesIds ? employeesIds.split(',') : [];
-    const vacationsTypesIdsCollection = vacationsTypesIds ? vacationsTypesIds.split(',') : [];
+    const { employeesIds
+            , fromDate
+            , toDate
+            , registerDate
+            , vacationsTypes
+            , lang } = req.query;
 
     try {
-
-
-        console.log('ok');
 
         const results = await vacationsManager
-            .getAllVacations(
-                employeesIdsCollection, 
-                fromDateObject, 
-                toDateObject,
-                registerDateObject,
-                vacationsTypesIdsCollection, 
-                lang);
+            .getAllVacations( employeesIds
+                , fromDate
+                , toDate
+                , registerDate
+                , vacationsTypes
+                , lang );
 
-        res.send(results);
+        res.json(results);
 
-    } catch(e) {
+    } catch(error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);  
+    }
+
+}
+
+// validateEmployeeVacationRequest = async (employeeVacation, dateFormatText) => {
+
+//     let validationMessage = '';
+
+//     if(!employeeVacation) {
+//         validationMessage = 'Invalid vacation!';
+//     } else if(!employeeVacation.startDate) {
+//         validationMessage = 'Invalid vacation start date!';
+//     } else if(!employeeVacation.endDate) {
+//         validationMessage = 'Invalid vacation end date!';
+//     } else if (isNaN(employeeVacation.employeeId)) {
+//         validationMessage = 'Invalid employee id!';
+//     } else if(!employeeVacation.vacationTypeId || employeeVacation.vacationTypeId.trim() === "") {
+//         validationMessage = 'Invalid vacation type id!';
+//     }
+
+//     if (validationMessage === '') {
+//         const startDateObject = dateUtil.parseDate(employeeVacation.startDate, dateFormatText);
+//         const endDateObject = dateUtil.parseDate(employeeVacation.endDate, dateFormatText);
+
+//         if(!startDateObject) {
+//             validationMessage = 'Invalid vacation start date!';
+//         } else if(!endDateObject || endDateObject < startDateObject) {
+//             validationMessage = 'Invalid vacation end date!';
+//         } 
+//     }
+
+//     let badRequest = true;
+
+//     if(validationMessage === '' ) {
+//         badRequest = false;
+//         const result = await 
+//             vacationsManager.validateEmployeeVacation(employeeVacation);
         
-        res.status(500).send();
-    }
+//         validationMessage = result.validationMessage;
+//     }
 
-}
+//     return { message: validationMessage, badRequest, result : validationMessage === ''};
+// }
 
-validateEmployeeVacationRequest = async (employeeVacation, dateFormatText) => {
+// exports.validateEmployeeVacation = async (req, res) => {
 
-    let validationMessage = '';
+//     try {
+//         const employeeVacation = req.body;
 
-    if(!employeeVacation) {
-        validationMessage = 'Invalid vacation!';
-    } else if(!employeeVacation.startDate) {
-        validationMessage = 'Invalid vacation start date!';
-    } else if(!employeeVacation.endDate) {
-        validationMessage = 'Invalid vacation end date!';
-    } else if (isNaN(employeeVacation.employeeId)) {
-        validationMessage = 'Invalid employee id!';
-    } else if(!employeeVacation.vacationTypeId || employeeVacation.vacationTypeId.trim() === "") {
-        validationMessage = 'Invalid vacation type id!';
-    }
+//         let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
+//             req.query.dateFormat || dateUtil.defaultApiCompiledDateFormat);
 
-    if (validationMessage === '') {
-        const startDateObject = dateUtil.parseDate(employeeVacation.startDate, dateFormatText);
-        const endDateObject = dateUtil.parseDate(employeeVacation.endDate, dateFormatText);
+//             delete validationResult.badRequest;
 
-        if(!startDateObject) {
-            validationMessage = 'Invalid vacation start date!';
-        } else if(!endDateObject || endDateObject < startDateObject) {
-            validationMessage = 'Invalid vacation end date!';
-        } 
-    }
+//         res.status(validationResult.badRequest ? 400 : 200)
+//             .send(validationResult);
+//     } catch(e) {
+//         res.status(500).send();
+//     }
+// }
 
-    let badRequest = true;
+// exports.createEmployeeVacation = async (req, res) => {
+//     try {
+//         const employeeVacation = req.body;
 
-    if(validationMessage === '' ) {
-        badRequest = false;
-        const result = await 
-            vacationsManager.validateEmployeeVacation(employeeVacation);
-        
-        validationMessage = result.validationMessage;
-    }
+//         let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
+//             req.query.dateFormat || dateUtil.defaultApiCompiledDateFormat);
 
-    return { message: validationMessage, badRequest, result : validationMessage === ''};
-}
+//         if(!validationResult.result) {
+//             delete validationResult.badRequest;
+//             return res.status(400).send(validationResult);
+//         }
 
-exports.validateEmployeeVacation = async (req, res) => {
+//         const creationResult = await vacationsManager
+//             .createEmployeeVacation(employeeVacation);
 
-    try {
-        const employeeVacation = req.body;
-
-        let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
-            req.query.dateFormat || dateUtil.defaultApiCompiledDateFormat);
-
-            delete validationResult.badRequest;
-
-        res.status(validationResult.badRequest ? 400 : 200)
-            .send(validationResult);
-    } catch(e) {
-        res.status(500).send();
-    }
-}
-
-exports.createEmployeeVacation = async (req, res) => {
-    try {
-        const employeeVacation = req.body;
-
-        let validationResult = await validateEmployeeVacationRequest(employeeVacation, 
-            req.query.dateFormat || dateUtil.defaultApiCompiledDateFormat);
-
-        if(!validationResult.result) {
-            delete validationResult.badRequest;
-            return res.status(400).send(validationResult);
-        }
-
-        const creationResult = await vacationsManager
-            .createEmployeeVacation(employeeVacation);
-
-        res.send(creationResult);
-    } catch(e) {
-        res.status(500).send();
-    }
-}
+//         res.send(creationResult);
+//     } catch(e) {
+//         res.status(500).send();
+//     }
+// }

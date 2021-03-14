@@ -9,6 +9,8 @@ const { queryMiddleware } = require('@abujude/sgs-khadamati');
 const Router = express.Router();
 
 Router.get('/'
+    , queryMiddleware.split(['employeesIds','vacationsTypes'])
+    , queryMiddleware.parseDate(['fromDate', 'toDate', 'registerDate'], 'dateFormat')
     , vacationsController.getAllVacations);
 
 Router.get('/types'

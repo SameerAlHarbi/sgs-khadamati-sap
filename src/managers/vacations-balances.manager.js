@@ -5,7 +5,7 @@ const vacationsTypesManager = require('./vacations-types.manager');
 exports.getAllVacationsBalances = async (employeesIds = []
      , fromDate = new Date()
      , toDate = new Date()
-     , vacationsTypes = []
+     , vacationsTypesIds = []
      , lang = 'A') => {
 
     lang = lang.toUpperCase();
@@ -44,9 +44,9 @@ exports.getAllVacationsBalances = async (employeesIds = []
             }
         ));
 
-        return vacationsTypes.length > 0 ? resultBalances.filter(balance => 
+        return vacationsTypesIds.length > 0 ? resultBalances.filter(balance => 
             balance.vacationsTypesIds.split(',')
-            .filter(vt => vacationsTypes.indexOf(vt) >= 0).length > 0) : resultBalances;
+            .filter(vt => vacationsTypesIds.indexOf(vt) >= 0).length > 0) : resultBalances;
 
     } catch(error) {
         throw error;

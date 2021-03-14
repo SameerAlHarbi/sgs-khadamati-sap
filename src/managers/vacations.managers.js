@@ -3,6 +3,7 @@ const vacationsTypesManager = require('./vacations-types.manager');
 const vacationsBalancesManager = require('./vacations-balances.manager');
 const date = require('../util/date');
 const helpers = require('../util/helpers');
+const { dateUtil } = require('@abujude/sgs-khadamati');
 
 const parseVacations = (sapVacations, infoType) => {
 
@@ -16,10 +17,17 @@ const parseVacations = (sapVacations, infoType) => {
             employeeId: +vacation.PERNR,
             vacationTypeId: vacation.SUBTY,
             vacationTypeName: vacation.ATEXT,
-            startDate: date.convertFormat(vacation.BEGDA),
-            endDate: date.convertFormat(vacation.ENDDA),
-            registerDate: date.convertFormat(vacation.AEDTM),
-            duration: date.calcDaysDuration(date.parseDate(vacation.BEGDA), date.parseDate(vacation.ENDDA)),
+            startDate: dateUtil.convertFormat(vacation.BEGDA
+                , dateUtil.defaultSapTextFormat
+                , dateUtil.defaultTextFormat),
+            endDate: dateUtil.convertFormat(vacation.ENDDA
+                , dateUtil.defaultSapTextFormat
+                , dateUtil.defaultTextFormat),  
+            registerDate: dateUtil.convertFormat(vacation.AEDTM
+                , dateUtil.defaultSapTextFormat
+                , dateUtil.defaultTextFormat),
+            duration: dateUtil.calcDaysDuration(dateUtil.parseDate(vacation.BEGDA, dateUtil.defaultSapTextFormat)
+                , dateUtil.parseDate(vacation.ENDDA, dateUtil.defaultSapTextFormat)),
             infoType: infoType
         })
     );
@@ -44,26 +52,24 @@ exports.getAllVacations = async (employeesIds = [],
               };
 
             if(fromDate) {
-                sapParams.IM_BEGDA = date.formatDate(fromDate, date.defaultSapCompiledDateFormat);
+                sapParams.IM_BEGDA = dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat);
             }
 
             if(toDate) {
-                sapParams.IM_ENDDA = date.formatDate(toDate, date.defaultSapCompiledDateFormat);
+                sapParams.IM_ENDDA = dateUtil.formatDate(toDate, dateUtil.defaultSapCompiledFormat);
             }
 
             if(registerDate) {
-                sapParams.IM_CDATE = date.formatDate(registerDate, date.defaultSapCompiledDateFormat);
+                sapParams.IM_CDATE = dateUtil.formatDate(registerDate, dateUtil.defaultSapCompiledFormat);
                 sapParams.IM_UPDATE = 'X';
             }
 
-            const client = await sapPool.acquire();
-            const sapResults = await client.call('ZHR_FINGERPRINT_VACATIONS', sapParams);
+            const sapClient = await sapPool.acquire();
+            const sapResults = await sapClient.call('ZHR_FINGERPRINT_VACATIONS', sapParams);
     
             if(!sapResults || !sapResults['T_2001']) {
                 return [];
             }
-
-            console.log(sapResults)
 
             let resultsVacations = parseVacations(sapResults['T_2001'], 2001);
             
@@ -72,9 +78,9 @@ exports.getAllVacations = async (employeesIds = [],
             }
 
             return resultsVacations.sort(helpers.compareValues('startDate'));
-        } catch (e) {
-            console.log(e);
-            throw new Error(e.message);
+
+        } catch (error) {
+            throw error;
         }
 };
 
