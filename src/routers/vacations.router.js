@@ -26,10 +26,10 @@ Router.get('/balances/summary'
     , queryMiddleware.parseDate(['balanceDate'], 'dateFormat')
     , vacationsBalancesController.getAllVacationsBalancesSummaries);
 
-Router.post('/validate'
-    , vacationsController.validateEmployeeVacation);
+// Router.post('/validate'
+//     , vacationsController.validateEmployeeVacation);
 
-Router.post('/create'
-    , vacationsController.createEmployeeVacation);
+// Router.post('/create'
+//     , vacationsController.createEmployeeVacation);
 
 module.exports = Router;

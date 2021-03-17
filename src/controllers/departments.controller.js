@@ -3,7 +3,7 @@ const employeesManager = require('../managers/employees.manager');
 
 exports.getAllDepartments = async (req, res, next) => {
 
-    const { fromDate, toDate, flat , lang } = req.query;
+    let { fromDate, toDate, flat , lang } = req.query;
     flat = flat ? req.query.flat === 'true' : false;
 
     try {
@@ -22,7 +22,7 @@ exports.getAllDepartments = async (req, res, next) => {
 exports.getDepartmentById = async (req, res, next) => {
 
     const departmentId = req.params.departmentId;
-    const { fromDate, toDate, childDepth, lang } = req.query;
+    let { fromDate, toDate, childDepth, lang } = req.query;
     childDepth = isNaN(childDepth) ? -1 : +childDepth;
 
     try {
@@ -56,7 +56,7 @@ exports.getDepartmentById = async (req, res, next) => {
 exports.getChildDepartments = async (req, res, next) => {
     
     const departmentId = req.params.departmentId;
-    const { fromDate, toDate, flat, childDepth, lang } = req.query;
+    let { fromDate, toDate, flat, childDepth, lang } = req.query;
     flat = flat ? req.query.flat === 'true' : false;
     childDepth = isNaN(childDepth) ? -1 : +childDepth;
 
