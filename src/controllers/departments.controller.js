@@ -10,6 +10,7 @@ exports.getAllDepartments = async (req, res, next) => {
 
         const results = await departmentsManager
             .getAllDepartments(fromDate, toDate, flat, lang);
+            
         res.json(results);
 
     } catch (error) {
