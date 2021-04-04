@@ -4,7 +4,7 @@ const { queryMiddleware } = require('@abujude/sgs-khadamati');
 
 const Router = express.Router();
 
-// /departments?{fromDate}&{toDate}&{dateFormat=YYYY-MM-DDTHH:mm:ss}&{flat=true|false}&{lang=A|E} => GET
+// /departments?{fromDate}&{toDate}&{?dateFormat=YYYY-MM-DDTHH:mm:ss}&{?flat=true|false}&{?lang=A|E} => GET
 Router.get('/'
     , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
     , departmentsController.getAllDepartments);
