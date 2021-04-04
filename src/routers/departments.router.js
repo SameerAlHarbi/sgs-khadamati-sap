@@ -6,7 +6,8 @@ const Router = express.Router();
 
 // /departments?{fromDate}&{toDate}&{?dateFormat=YYYY-MM-DDTHH:mm:ss}&{?flat=true|false}&{?lang=A|E} => GET
 Router.get('/'
-    , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
+    , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat', true)
+    , queryMiddleware.parseBoolean(['flat'], false)
     , departmentsController.getAllDepartments);
 
 // /departments/{departmentId}?{fromDate}&{toDate}&{dateFormat=YYYY-MM-DDTHH:mm:ss}&{childDepth=-1|0|...}&{lang} => GET

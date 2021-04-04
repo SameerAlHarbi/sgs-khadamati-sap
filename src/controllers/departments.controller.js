@@ -4,7 +4,12 @@ const employeesManager = require('../managers/employees.manager');
 exports.getAllDepartments = async (req, res, next) => {
 
     let { fromDate, toDate, flat , lang } = req.query;
-    flat = flat ? req.query.flat === 'true' : false;
+
+        console.log(fromDate);
+    
+
+
+    // flat = flat ? req.query.flat === 'true' : false;
 
     try {
 
