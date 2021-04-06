@@ -12,6 +12,8 @@ const countriesRouter = require('./routers/countries.router');
 const employeesRouter = require('./routers/employees.router');
 const departmentsRouter = require('./routers/departments.router');
 const vacationsRouter = require('./routers/vacations.router');
+const attachmentsRouter = require('./routers/attachments.router');
+
 const errorsController = require('./controllers/errors.controller');
 
 //Express server
@@ -36,6 +38,7 @@ app.use('/countries', authMiddleware, countriesRouter);
 app.use('/employees', authMiddleware, employeesRouter);
 app.use('/departments', authMiddleware, departmentsRouter); 
 app.use('/vacations', authMiddleware, vacationsRouter);
+app.use('/attachments', attachmentsRouter);
 
 app.use('/500', errorsController.get500);
 app.use(errorsController.get404);

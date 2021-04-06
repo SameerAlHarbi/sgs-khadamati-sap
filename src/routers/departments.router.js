@@ -12,12 +12,13 @@ Router.get('/'
 
 // /departments/{departmentId}?{fromDate}&{toDate}&{dateFormat=YYYY-MM-DDTHH:mm:ss}&{childDepth=-1|0|...}&{lang} => GET
 Router.get('/:departmentId'
-    , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
+    , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat', true)
     , departmentsController.getDepartmentById);
 
 // /departments/{departmentId}/childs?{fromDate}&{toDate}&{dateFormat}&{flat=true|false}&{childDepth=-1|0|...}&{lang} => GET
 Router.get('/:departmentId/childs'
     , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
+    , queryMiddleware.parseBoolean(['flat'], false)
     , departmentsController.getChildDepartments);
 
 // /departments/{departmentId}/employees?lang=A => GET

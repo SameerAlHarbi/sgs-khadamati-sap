@@ -5,12 +5,6 @@ exports.getAllDepartments = async (req, res, next) => {
 
     let { fromDate, toDate, flat , lang } = req.query;
 
-        console.log(fromDate);
-    
-
-
-    // flat = flat ? req.query.flat === 'true' : false;
-
     try {
 
         const results = await departmentsManager
@@ -63,7 +57,6 @@ exports.getChildDepartments = async (req, res, next) => {
     
     const departmentId = req.params.departmentId;
     let { fromDate, toDate, flat, childDepth, lang } = req.query;
-    flat = flat ? req.query.flat === 'true' : false;
     childDepth = isNaN(childDepth) ? -1 : +childDepth;
 
     try {
