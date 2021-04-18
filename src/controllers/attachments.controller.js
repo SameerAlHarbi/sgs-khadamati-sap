@@ -1,14 +1,26 @@
 const multer = require('multer');
-const fs = require('fs');
-
+const attachmentsManager = require('../managers/attachments.manager');
 
 exports.attach = async (req, res, next) => {
 
+    const { employeeId
+          , fromDate
+          , toDate
+          , sequence
+          , requestNumber
+          , requestDate } = req.body;
+
+    const attachedFile = req.file;
+
     try {
 
-        // const buffer = req.file.buffer.toString('base64');
-        const hexBinaryData = req.file.buffer.toString('hex');
-        const arr = hexBinaryData.match(/.{1,255}/g);
+        const result = await attachmentsManager.attach(employeeId
+            , fromDate
+            , toDate
+            , sequence
+            , requestNumber
+            , attachedFile
+            , requestDate);
 
         res.json({ results : 'ok'});
 

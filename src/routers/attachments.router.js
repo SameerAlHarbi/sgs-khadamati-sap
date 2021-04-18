@@ -1,5 +1,6 @@
 const express = require('express');
 const multer = require('multer');
+const { queryMiddleware } = require('@abujude/sgs-khadamati');
 
 const attachmentsController = require('../controllers/attachments.controller');
 
@@ -23,6 +24,10 @@ const upload = multer({
 })
 
 // /attachments/attach?{lang=A} => GET
-Router.post('/attach', upload.single('upload') ,attachmentsController.attach);
+Router.post('/attach'
+    , upload.single('upload')
+    , queryMiddleware.parseDate(['fromDate', 'toDate', 'requestDate']
+        , 'dateFormat', true, false, true)
+    , attachmentsController.attach);
 
 module.exports = Router;

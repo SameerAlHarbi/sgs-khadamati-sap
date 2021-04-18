@@ -197,14 +197,52 @@ exports.getChildDepartments = async (departmentId
     }
 }
 
-exports.getAllDepartmentEmployees = async (departmentId
+exports.getDepartmentManager = async (departmentId 
     , fromDate = new Date()
     , toDate = new Date()
+    , lang = 'A') => {
+
+        if(!departmentId) {
+            throw new Error('Invalid department id!');
+        }
+
+        lang = lang.toUpperCase();
+
+        try {
+
+            const sapClient = await sapPool.acquire();
+            let result = await sapClient.call('ZHR_GET_ORG_UNIT_HOLDER', {
+                IM_ORG_UNIT: departmentId,
+                IM_BEGDA: dateUtil.formatDate(fromDate, dateUtil.defaultSapCompiledFormat),
+                IM_ENDDA: dateUtil.formatDate(toDate, dateUtil.defaultSapCompiledFormat)
+            });
+
+            if(!result) {
+                return undefined;
+            }
+
+            return {  managerId : result.EX_PERNR ? +result.EX_PERNR : 0
+                    , managerName : result.M_NAME };
+
+        } catch(error) {
+            console.log(error)
+            throw error;
+        }
+}
+
+exports.getDepartmentEmployees = async (departmentId
+    , fromDate = new Date()
+    , toDate = new Date()
+    , direct = false
+    , tree = false
+    , status = 'date'
     , lang = 'A') => {
 
     if(!departmentId) {
         throw new Error('Invalid department id!');
     }
+
+    lang = lang.toUpperCase();
 
     try {
 
@@ -221,7 +259,40 @@ exports.getAllDepartmentEmployees = async (departmentId
 
         const employeesIds = results['T_ORG_UNITS'].filter( r => r.OTYPE === 'P').map(r => r.OBJID);
 
-        const employeesInfo = await employeesManager.getAllEmployees(employeesIds, fromDate, toDate, undefined, lang);
+        let employeesInfo = await employeesManager.getAllEmployees(employeesIds, fromDate, toDate, status, lang);
+
+        if(direct) {
+            employeesInfo = employeesInfo.filter(employee => +employee.departmentId === +departmentId);
+        }
+
+        if(tree) {
+
+            let departmentsIds = employeesInfo.map(employee => employee.departmentId);
+            departmentsIds = [...new Set(departmentsIds)]
+    
+            for(const departmentId of departmentsIds) {
+    
+                const manager = await this.getDepartmentManager(departmentId, fromDate, toDate, lang);
+                
+                employeesInfo
+                    .filter(employee => employee.departmentId === departmentId)
+                    .forEach(employee => {
+                        employee.reportToId = manager ? manager.managerId : undefined;
+                        if(employee.reportToId && employee.reportToId === employee.employeeId) {
+                            employee.reportToId = undefined;
+                        }
+                });
+                
+            }
+
+            // employeesInfo.forEach(employee => {
+            //     employee.subordinates = employeesInfo.filter(emp => emp.reportToId && emp.reportToId === employee.employeeId);
+            // });
+
+            // employeesInfo = employeesInfo.filter(employee => !employee.reportToId);
+
+        }
+
         return employeesInfo;
 
     } catch (error) {

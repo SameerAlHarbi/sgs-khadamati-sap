@@ -83,16 +83,47 @@ exports.getChildDepartments = async (req, res, next) => {
 
 }
 
-exports.getDepartmentEmployees = async (req, res, next) => {
+exports.getDepartmentManager = async (req , res, next) => {
 
     const departmentId = req.params.departmentId;
     const {fromDate, toDate, lang} = req.query;
 
     try {
 
-        const result = await departmentsManager.getAllDepartmentEmployees(departmentId,
+        const result = await departmentsManager
+            .getDepartmentManager(departmentId
+                    , fromDate
+                    , toDate
+                    , lang);
+
+        if(!result) {
+            const error = new Error();
+            error.httpStatusCode = 404;
+            throw error;
+        }
+
+        return res.json(result);
+
+    } catch(error) {
+        error.httpStatusCode  = error.httpStatusCode || 500;
+        return next(error);
+    }
+
+}
+
+exports.getDepartmentEmployees = async (req, res, next) => {
+
+    const departmentId = req.params.departmentId;
+    const {fromDate, toDate, direct, tree, status, lang} = req.query;
+ 
+    try {
+
+        const result = await departmentsManager.getDepartmentEmployees(departmentId,
              fromDate,
              toDate,
+             direct,
+             tree,
+             status,
              lang);
 
         res.json(result);
