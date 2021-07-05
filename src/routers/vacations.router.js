@@ -8,14 +8,16 @@ const { queryMiddleware } = require('@abujude/sgs-khadamati');
 
 const Router = express.Router();
 
+// /vacations?{employeesIds}&{vacationsTypes}&{fromDate}&{toDate}&{registerDate}&{dateFormat}&{workSystem=all|sgs|pbs}&{lang=A} => GET
 Router.get('/'
     , queryMiddleware.split(['employeesIds','vacationsTypes'])
     , queryMiddleware.parseDate(['fromDate', 'toDate', 'registerDate'], 'dateFormat')
     , vacationsController.getAllVacations);
 
+// /vacations/types?{workSystem=all|sgs|pbs}&{lang=A} => GET
 Router.get('/types'
     , vacationsTypesController.getAllVacationsTypes);
-
+ 
 Router.get('/balances'
     , queryMiddleware.split(['employeesIds','vacationsTypes'])
     , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
@@ -26,8 +28,9 @@ Router.get('/balances/summary'
     , queryMiddleware.parseDate(['balanceDate'], 'dateFormat')
     , vacationsBalancesController.getAllVacationsBalancesSummaries);
 
-// Router.post('/validate'
-//     , vacationsController.validateEmployeeVacation);
+Router.post('/validateNew'
+    , queryMiddleware.parseDate(['startDate', 'endDate'], 'dateFormat', true, false, true)
+    , vacationsController.validateEmployeeVacation);
 
 // Router.post('/create'
 //     , vacationsController.createEmployeeVacation);

@@ -12,9 +12,9 @@ exports.getAllVacationsBalances = async (req, res, next) => {
 
         const results = await vacationsBalancesManager
             .getAllVacationsBalances(employeesIds
+                , vacationsTypes
                 , fromDate
                 , toDate
-                , vacationsTypes
                 , lang);
         
         res.json(results);
@@ -44,6 +44,53 @@ exports.getAllVacationsBalancesSummaries = async (req, res, next) => {
         res.json(results);
 
     } catch (error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
+    }
+
+}
+
+exports.getEmployeeVacationsBalances = async (req, res, next) => {
+
+    const employeeId = req.params.employeeId;
+    const {vacationsTypes, fromDate, toDate, lang} = req.query;
+
+    try{
+
+        const results = await vacationsBalancesManager
+            .getAllVacationsBalances(
+                [employeeId]
+                 , vacationsTypes
+                 , fromDate
+                 , toDate
+                 , lang);
+
+        return res.json(results);
+
+    } catch(error) {
+        error.httpStatusCode = error.httpStatusCode || 500;
+        return next(error);
+    }
+
+}
+
+exports.getEmployeeVacationsBalancesSummaries = async (req, res, next) => {
+
+    const employeeId = req.params.employeeId;
+    const {vacationsTypes, balanceDate, lang} = req.query;
+
+    try {
+
+        const results = await vacationsBalancesManager
+            .getAllVacationsBalancesSummaries(
+                [employeeId]
+                , vacationsTypes
+                , balanceDate
+                , lang);
+
+        res.json(results);
+
+    } catch(error) {
         error.httpStatusCode = error.httpStatusCode || 500;
         return next(error);
     }

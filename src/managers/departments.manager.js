@@ -225,9 +225,28 @@ exports.getDepartmentManager = async (departmentId
                     , managerName : result.M_NAME };
 
         } catch(error) {
-            console.log(error)
             throw error;
         }
+}
+
+setupDepartmentEmployeesTree = async (departmentId, employeesInfo, fromDate, toDate, lang) => {
+
+    try {
+
+        const manager = await this.getDepartmentManager(departmentId, fromDate, toDate, lang);
+        let departmentEmployees = employeesInfo.filter(emp => +emp.departmentId === +departmentId);
+
+        for (let employee of departmentEmployees) {
+            employee.reportToId = manager ? manager.managerId : undefined;
+            if(employee.reportToId && employee.reportToId === employee.employeeId) {
+                const superManager = await employeesManager.getEmployeeManager(employee.employeeId.toString(),fromDate, toDate, lang)
+                employee.reportToId = superManager ? superManager.employeeId : undefined;
+            }
+        }
+
+    } catch(error) {
+        throw error;
+    }
 }
 
 exports.getDepartmentEmployees = async (departmentId
@@ -263,33 +282,17 @@ exports.getDepartmentEmployees = async (departmentId
 
         if(direct) {
             employeesInfo = employeesInfo.filter(employee => +employee.departmentId === +departmentId);
-        }
+            await setupDepartmentEmployeesTree(departmentId, employeesInfo, fromDate, toDate, lang);
+        } else if(tree) {
 
-        if(tree) {
-
-            let departmentsIds = employeesInfo.map(employee => employee.departmentId);
-            departmentsIds = [...new Set(departmentsIds)]
+            let subDepartmentsIds = employeesInfo.map(employee => employee.departmentId);
+            subDepartmentsIds = [...new Set(subDepartmentsIds)]
     
-            for(const departmentId of departmentsIds) {
+            for(let subDepartmentId of subDepartmentsIds) {
     
-                const manager = await this.getDepartmentManager(departmentId, fromDate, toDate, lang);
-                
-                employeesInfo
-                    .filter(employee => employee.departmentId === departmentId)
-                    .forEach(employee => {
-                        employee.reportToId = manager ? manager.managerId : undefined;
-                        if(employee.reportToId && employee.reportToId === employee.employeeId) {
-                            employee.reportToId = undefined;
-                        }
-                });
+                await setupDepartmentEmployeesTree(subDepartmentId, employeesInfo, fromDate, toDate, lang);
                 
             }
-
-            // employeesInfo.forEach(employee => {
-            //     employee.subordinates = employeesInfo.filter(emp => emp.reportToId && emp.reportToId === employee.employeeId);
-            // });
-
-            // employeesInfo = employeesInfo.filter(employee => !employee.reportToId);
 
         }
 
@@ -299,3 +302,4 @@ exports.getDepartmentEmployees = async (departmentId
         throw error;
     }
 }
+

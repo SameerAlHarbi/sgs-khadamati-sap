@@ -5,16 +5,15 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "dev": "env-cmd -f ./config/dev.prod.env nodemon src/index.js",
-    "test": "env-cmd -f ./config/dev.test.env nodemon src/index.js",
-    "testDev": "env-cmd -f ./config/dev.test.dev.env nodemon src/index.js"
+    "prod": "env-cmd -f ./config/vars.prod.env nodemon src/index.js",
+    "dev": "env-cmd -f ./config/vars.dev.env nodemon src/index.js",
+    "qlt": "env-cmd -f ./config/vars.qlt.env nodemon src/index.js"
   },
   "keywords": [],
   "author": "Sameer Mohammed Al Harbi",
   "license": "ISC",
   "dependencies": {
-    "@abujude/sgs-khadamati": "^1.3.5",
-    "body-parser": "^1.19.0",
+    "@abujude/sgs-khadamati": "^1.3.6",
     "chalk": "^3.0.0",
     "express": "^4.17.1",
     "multer": "^1.4.2",

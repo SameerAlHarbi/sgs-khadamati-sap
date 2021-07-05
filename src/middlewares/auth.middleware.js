@@ -11,9 +11,9 @@ const auth = async (req, res, next) => {
             return next(error);
         }
 
-    } catch(e) {
+    } catch(error) {
         e.httpStatusCode = 500;
-        return next(e);
+        return next(error);
     }
 
     next();

@@ -2,8 +2,8 @@ const vacationsTypesManager = require('../managers/vacations-types.manager');
 
 exports.getAllVacationsTypes = async (req, res, next) => {
 
-    const lang = req.query.lang;
     const workSystem = req.query.workSystem;
+    const lang = req.query.lang;
 
     try {
 

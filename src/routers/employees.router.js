@@ -1,5 +1,7 @@
 const express = require('express');
 const employeesController = require('../controllers/employees.controller');
+const vacationsBalancesController = require('../controllers/vacations-balances.controller');
+const vacationsController = require('../controllers/vacations.controller');
 const { queryMiddleware } = require('@abujude/sgs-khadamati');
 
 const Router = express.Router();
@@ -23,13 +25,28 @@ Router.get('/:employeeId/manager'
     , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
     , employeesController.getEmployeeManager);
 
-// // /employees/{employeeId}/vacations?lang=A => GET
-// Router.get('/:employeeId/vacations', employeesController.getEmployeeVacations);
+// /employees/{employeeId}/subordinates?{fromDate}&{toDate}&{dateFormat}&{?direct}&{?tree}&{dateFormat}&{status=all|active|inactive|date}&{lang=A} => GET
+Router.get('/:employeeId/subordinates'
+    , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat')
+    , queryMiddleware.parseBoolean(['direct', 'tree'], false)
+    , employeesController.getEmployeeSubordinates);
 
-// // /employees/{employeeId}/vacations/balances?lang=A => GET
-// Router.get('/:employeeId/vacations/balances', employeesController.getEmployeeVacationsBalances);
+// /employees/{employeeId}/vacations?{vacationsTypes}&{registerDate}&{fromDate}&{toDate}&{dateFormat}&{lang=A} => GET
+Router.get('/:employeeId/vacations'
+    , queryMiddleware.split(['vacationsTypes'])
+    , queryMiddleware.parseDate(['registerDate', 'fromDate', 'toDate'], 'dateFormat')  
+    , vacationsController.getEmployeeVacations);
 
-// // /employees/{employeeId}/vacations/balances/summary?lang=A => GET
-// Router.get('/:employeeId/vacations/balances/summary', employeesController.getEmployeeVacationsBalancesSummaries);
+// /employees/{employeeId}/vacations/balances?{vacationsTypes}&{fromDate}&{toDate}&{dateFormat}&{lang=A} => GET
+Router.get('/:employeeId/vacations/balances'
+    , queryMiddleware.split(['vacationsTypes'])
+    , queryMiddleware.parseDate(['fromDate', 'toDate'], 'dateFormat') 
+    , vacationsBalancesController.getEmployeeVacationsBalances);
+
+// /employees/{employeeId}/vacations/balances/summary?{vacationsTypes}&{balanceDate}&{dateFormat}&{lang=A} => GET
+Router.get('/:employeeId/vacations/balances/summary'
+    , queryMiddleware.split(['vacationsTypes'])
+    , queryMiddleware.parseDate(['balanceDate'], 'dateFormat')
+    , vacationsBalancesController.getEmployeeVacationsBalancesSummaries);
 
 module.exports = Router;

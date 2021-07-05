@@ -3,9 +3,9 @@ const { dateUtil } = require('@abujude/sgs-khadamati');
 const vacationsTypesManager = require('./vacations-types.manager');
 
 exports.getAllVacationsBalances = async (employeesIds = []
+     , vacationsTypesIds = []
      , fromDate = new Date()
      , toDate = new Date()
-     , vacationsTypesIds = []
      , lang = 'A') => {
 
     lang = lang.toUpperCase();
@@ -116,9 +116,9 @@ exports.getAllVacationsBalancesSummaries = async (employeesIds = []
         try {
 
             const vacationsBalances = await this.getAllVacationsBalances(employeesIds
-                , balanceDate
-                , balanceDate
                 , vacationsTypesIds
+                , balanceDate
+                , balanceDate
                 , lang);
 
                 if(vacationsBalances.length < 1) {

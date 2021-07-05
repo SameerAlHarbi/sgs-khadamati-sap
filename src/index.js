@@ -1,6 +1,5 @@
 //Packeges
 const express = require('express');
-const bodyParser = require('body-parser');
 const chalk = require('chalk');
 
 //Middlewares
@@ -19,7 +18,6 @@ const errorsController = require('./controllers/errors.controller');
 //Express server
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.use((req, res, next) => {
@@ -53,6 +51,19 @@ app.use((error, req, res, next) => {
 
 const port = process.env.PORT || 6000;
 app.listen(port, () => {
-    console.log(chalk.greenBright
-        .inverse(`SGS KHADAMATI SAP SERVER IS UP AND RUNNING ON PORT ${port}`));
+    switch(process.env.SAP_SERVER_TYPE)
+    {
+        case 'DEVELOPMENT':
+            console.log(chalk.yellowBright
+                .inverse(`SGS KHADAMATI SAP ${process.env.SAP_SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
+            break;
+        case 'QUALITY':
+            console.log(chalk.cyan
+                .inverse(`SGS KHADAMATI SAP ${process.env.SAP_SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
+            break;
+        default :
+             console.log(chalk.greenBright
+                .inverse(`SGS KHADAMATI SAP ${process.env.SAP_SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
+    }
+
 });

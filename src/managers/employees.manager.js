@@ -3,6 +3,7 @@ const modelMapper = require('../models/model-mapper');
 const { dateUtil } = require('@abujude/sgs-khadamati');
 const Employee = require('../models/employee.model');
 const Salary = require('../models/salary.model');
+const departmentsManager = require('./departments.manager');
 
 /**
  * Get all employees in SAP system.
@@ -174,4 +175,43 @@ exports.getEmployeeManager = async (employeeId,
     } catch (error) {
         throw error;
     }
+}
+
+exports.getEmployeeSubordinates = async (employeeId
+    , fromDate = new Date()
+    , toDate = new Date()
+    , direct = false
+    , tree = false
+    , status = 'date'
+    , lang = 'A') => {
+
+        try {
+
+            const employeeInfo = await this.getEmployeeById(employeeId, lang);
+
+            if(!employeeInfo) {
+                throw new Error('Invalid employee id!');
+            }
+
+            const departmentManager = await departmentsManager.getDepartmentManager(employeeInfo.departmentId);
+
+            if(!departmentManager || departmentManager.managerId != employeeId) {
+                return [];
+            }
+
+            let subOrdinates = await departmentsManager.getDepartmentEmployees(
+                    employeeInfo.departmentId
+                ,   fromDate
+                ,   toDate
+                ,   direct
+                ,   tree
+                ,   status
+                ,   lang);
+
+            return subOrdinates;
+    
+        } catch (error) {
+            throw error;
+        }
+
 }

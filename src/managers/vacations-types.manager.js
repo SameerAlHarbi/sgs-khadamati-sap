@@ -23,7 +23,7 @@ exports.getAllVacationsTypes = async (workSystem = 'ALL',lang = 'A') => {
             !vt.ATEXT.includes('إذن') && 
             !vt.ATEXT.includes('Excuse') && 
             !vt.ATEXT.includes('انتداب') &&
-            !vt.ATEXT.includes('Mandate')).map(vt =>(
+            !vt.ATEXT.includes('Mandate')).map(vt => (
                 { 
                     id: vt.AWART,
                     name: vt.ATEXT,

@@ -35,14 +35,27 @@ const parseVacations = (sapVacations, infoType) => {
     return resultsVacations;
 }
 
-exports.getAllVacations = async (employeesIds = [],
-    fromDate = null,
-    toDate = null,
-    registerDate = null, 
-    vacationsTypesIds = [],
-    lang = 'A') => {
+exports.getAllVacations = async (employeesIds = []
+    , vacationsTypesIds = []
+    , fromDate = undefined
+    , toDate = undefined
+    , registerDate = undefined
+    , workSystem = 'ALL'
+    , lang = 'A') => {
 
         lang = lang.toUpperCase();
+
+        if(workSystem.toUpperCase() !== "ALL" ) {
+
+            let vacationsTypes = await vacationsTypesManager.getAllVacationsTypes(workSystem, lang);
+
+            if(vacationsTypes.length > 0) {
+                vacationsTypesIds.push(...vacationsTypes.map(vt => vt.id))
+            }
+
+            vacationsTypesIds = [... new Set(vacationsTypesIds)].sort();
+
+        }
 
         try {
 
@@ -87,15 +100,13 @@ exports.getAllVacations = async (employeesIds = [],
 exports.validateEmployeeVacation = async (employeeVacation) => {
 
     try {
-        const startDate = date.convertFormat(employeeVacation.startDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
-        const endDate = date.convertFormat(employeeVacation.endDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
 
         const client = await sapPool.acquire();
         const sapResults = await client.call('ZHR_ABSENCE_SIMULATECREATION', {
             EMPLOYEENUMBER: employeeVacation.employeeId.toString(),
             ABSENCETYPE: employeeVacation.vacationTypeId,
-            VALIDITYBEGIN: startDate,
-            VALIDITYEND: endDate
+            VALIDITYBEGIN:  dateUtil.formatDate(employeeVacation.startDate , dateUtil.defaultSapCompiledFormat),
+            VALIDITYEND: dateUtil.formatDate(employeeVacation.endDate , dateUtil.defaultSapCompiledFormat)
         });
 
         const validationMessage = !sapResults || !sapResults['RETURN'] ?
@@ -103,8 +114,8 @@ exports.validateEmployeeVacation = async (employeeVacation) => {
 
         return { validationMessage , validationResult: validationMessage === ''};
         
-    } catch(e) {
-        throw new Error(e.message);
+    } catch(error) {
+        throw error;
     }
 };
 
@@ -112,15 +123,12 @@ exports.createEmployeeVacation = async (employeeVacation) => {
 
     try {
 
-        const startDate = date.convertFormat(employeeVacation.startDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
-        const endDate = date.convertFormat(employeeVacation.endDate, date.defaultApiCompiledDateFormat,date.defaultSapCompiledDateFormat);
-
         const client = await sapPool.acquire();
         const sapResults = await client.call('ZHR_ABSENCE_CREATE', {
             EMPLOYEENUMBER: employeeVacation.employeeId.toString(),
             ABSENCETYPE: employeeVacation.vacationTypeId,
-            VALIDITYBEGIN: startDate,
-            VALIDITYEND: endDate
+            VALIDITYBEGIN: dateUtil.formatDate(employeeVacation.startDate , dateUtil.defaultSapCompiledFormat),
+            VALIDITYEND: dateUtil.formatDate(employeeVacation.endDate , dateUtil.defaultSapCompiledFormat)
         });
 
         if(!sapResults || !sapResults['RETURN']) {
@@ -133,8 +141,7 @@ exports.createEmployeeVacation = async (employeeVacation) => {
             id: sapResults['RETURN'].ID,
             number: sapResults['RETURN'].NUMBER
         }
-    } catch(e) {
-        console.log(e)
-        throw new Error(e.message);
+    } catch(error) {
+        throw error;
     }
 }
