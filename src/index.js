@@ -20,6 +20,8 @@ const app = express();
 
 app.use(express.json());
 
+app.use(queryMiddleware.setLanguage('A', 'lang'));
+
 app.use((req, res, next) => {
 
     // req.query.lang = req.query.lang.toUpperCase() || 'A';
@@ -28,11 +30,9 @@ app.use((req, res, next) => {
 
 });
 
-app.use(queryMiddleware.setLanguage('A', 'lang'));
-
 // app.use(authMiddleware);
 
-app.use('/countries', authMiddleware, countriesRouter);
+app.use('/countries', countriesRouter);
 app.use('/employees', authMiddleware, employeesRouter);
 app.use('/departments', authMiddleware, departmentsRouter); 
 app.use('/vacations', authMiddleware, vacationsRouter);
@@ -46,24 +46,24 @@ app.use((error, req, res, next) => {
     error.httpStatusCode = error.httpStatusCode || 500;
     error.message = error.httpStatusCode !== 404 ? 
         error.message || '' : 'Data NotFound!';
-    return res.status(error.httpStatusCode).json({ error : error.message });
+    return res.status(error.httpStatusCode).json({ error : error.message, data: error.errorsData || {} });
 });
 
 const port = process.env.PORT || 6000;
+
 app.listen(port, () => {
-    switch(process.env.SAP_SERVER_TYPE)
+    switch(process.env.SERVER_TYPE)
     {
         case 'DEVELOPMENT':
             console.log(chalk.yellowBright
-                .inverse(`SGS KHADAMATI SAP ${process.env.SAP_SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
+                .inverse(`SGS KHADAMATI SAP ${process.env.SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
             break;
         case 'QUALITY':
             console.log(chalk.cyan
-                .inverse(`SGS KHADAMATI SAP ${process.env.SAP_SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
+                .inverse(`SGS KHADAMATI SAP ${process.env.SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
             break;
         default :
              console.log(chalk.greenBright
-                .inverse(`SGS KHADAMATI SAP ${process.env.SAP_SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
+                .inverse(`SGS KHADAMATI SAP ${process.env.SERVER_TYPE} SERVER IS UP AND RUNNING ON PORT ${port}`));
     }
-
 });
