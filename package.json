@@ -5,9 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
-    "prod": "env-cmd -f ./config/vars.prod.env nodemon src/index.js",
-    "dev": "env-cmd -f ./config/vars.dev.env nodemon src/index.js",
-    "qlt": "env-cmd -f ./config/vars.qlt.env nodemon src/index.js"
+    "start:prod": "env-cmd -f ./config/vars.prod.env nodemon src/index.js",
+    "start:dev": "env-cmd -f ./config/vars.dev.env nodemon src/index.js",
+    "start:qlt": "env-cmd -f ./config/vars.qlt.env nodemon src/index.js"
   },
   "keywords": [],
   "author": "Sameer Mohammed Al Harbi",
