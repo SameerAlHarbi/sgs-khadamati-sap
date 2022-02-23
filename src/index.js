@@ -22,6 +22,7 @@ app.use(express.json());
 
 app.use(queryMiddleware.setLanguage('A', 'lang'));
 
+//last middleware
 app.use((req, res, next) => {
 
     // req.query.lang = req.query.lang.toUpperCase() || 'A';
