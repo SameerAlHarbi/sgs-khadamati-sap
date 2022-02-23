@@ -1,4 +1,4 @@
-// import pack
+// import packages
 const express = require('express');
 const countriesController = require('../controllers/countries.controller');
 
