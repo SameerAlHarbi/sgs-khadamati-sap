@@ -13,6 +13,7 @@ const departmentsRouter = require('./routers/departments.router');
 const vacationsRouter = require('./routers/vacations.router');
 const attachmentsRouter = require('./routers/attachments.router');
 
+//Controllers
 const errorsController = require('./controllers/errors.controller');
 
 //Express server
@@ -38,7 +39,6 @@ app.use('/employees', authMiddleware, employeesRouter);
 app.use('/departments', authMiddleware, departmentsRouter); 
 app.use('/vacations', authMiddleware, vacationsRouter);
 app.use('/attachments', attachmentsRouter);
-
 app.use('/500', errorsController.get500);
 app.use(errorsController.get404);
 
