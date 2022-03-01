@@ -12,6 +12,8 @@ const employeesRouter = require('./routers/employees.router');
 const departmentsRouter = require('./routers/departments.router');
 const vacationsRouter = require('./routers/vacations.router');
 const attachmentsRouter = require('./routers/attachments.router');
+const delegationsRouter = require('./routers/delegations.router');
+
 
 //Controllers
 const errorsController = require('./controllers/errors.controller');
@@ -34,6 +36,7 @@ app.use((req, res, next) => {
 
 // app.use(authMiddleware);
 
+app.use('/delegations', delegationsRouter);
 app.use('/countries', countriesRouter);
 app.use('/employees', authMiddleware, employeesRouter);
 app.use('/departments', authMiddleware, departmentsRouter); 

@@ -1,6 +1,7 @@
 const Country = require('../models/country.model');
 const City = require('../models/city.model');
 const Employee = require('../models/employee.model');
+const DelegationType = require('../models/delegationType.model')
 const { dateUtil } = require('@abujude/sgs-khadamati');
 
 exports.mapCountryDTO = (sapCountry) => {
@@ -61,3 +62,8 @@ exports.mapEmployeeDTO = (sapEmployee) => {
         return employee;
 
 }
+
+exports.mapDelegationTypeDTO = (sapDelegationType) => {
+    return new DelegationType(sapDelegationType.DOMVALUE_L,
+        sapDelegationType.DDTEXT);
+};
