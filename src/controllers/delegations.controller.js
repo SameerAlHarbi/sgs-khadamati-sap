@@ -1,13 +1,13 @@
 const delegationsManager = require('../managers/delegations.manager');
 
-exports.getDelegationsTypes = async (req, res, next) => {
+exports.getDelegationTypes = async (req, res, next) => {
     
     const lang = req.query.lang;
 
     try {
 
         const results = await delegationsManager
-            .getDelegationsTypes(lang);
+            .getDelegationTypes(lang);
         
         res.json(results);
 

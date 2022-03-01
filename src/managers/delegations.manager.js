@@ -7,7 +7,7 @@ const delegationType = require('../models/delegationType.model');
  * @param {string} lang - Results language.
  * @return {Array<delegationType>} Array of delegationsTypes objects.
  */
- exports.getDelegationsTypes = async (lang = 'A') => {
+ exports.getDelegationTypes = async (lang = 'A') => {
 
     lang = lang.toUpperCase();
 
