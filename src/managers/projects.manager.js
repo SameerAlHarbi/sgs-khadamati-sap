@@ -16,7 +16,7 @@ exports.saveProject = async (project) => {
             STATUS: project.isActive === "true"? "X":"-" }});
         
         if(!results) {
-            return false;
+            throw new Error("Can't create project! , error from SAP");
         }
 
         return true;
