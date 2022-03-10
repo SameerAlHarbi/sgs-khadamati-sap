@@ -7,18 +7,18 @@ exports.saveProject = async (project) => {
         const sapClient = await sapPool.acquire();
         
         const results = await sapClient.call('ZHR_MANDATE_PROJECTS',{ IM_PROJECT: {
-            PCODE: project.code,
-            GJAHR: project.year,
-            USNAM: project.CreateProjectEmployeeId,
-            PERNR: project.managerId,
-            PNAME: project.title,
-            NOTE:  project.note,
+            PCODE:  project.code,
+            GJAHR:  project.year,
+            USNAM:  project.createdById,
+            PERNR:  project.managerId,
+            PNAME:  project.title,
+            NOTE: !(project.note)? "" : project.note,
             STATUS: project.isActive === "true"? "X":"-" }});
         
         if(!results) {
             throw new Error("Can't create project! , error from SAP");
         }
-
+        
         return true;
 
     } catch (error) {
