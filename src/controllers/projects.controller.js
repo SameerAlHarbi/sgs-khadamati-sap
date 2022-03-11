@@ -6,11 +6,14 @@ exports.saveProject = async (req, res, next) => {
 
         const project = req.body;
 
-        let validationResult = await validateSaveProject(project);
+        let validationResult = await validateProject(project);
 
         if(!validationResult.result) {
+            const error = new Error(validationResult.validationMessage);
+            error.httpStatusCode = 400;
             delete validationResult.badRequest;
-            return res.status(400).json(validationResult);
+            error.errorsData = validationResult;
+            throw error;
         }
 
         const results = await projectsManager
@@ -24,23 +27,39 @@ exports.saveProject = async (req, res, next) => {
     }
 }
 
-validateSaveProject = async (project) => {
+validateProject = async (project) => {
 
     let validationMessage = '';
+    let propertyName = ''
 
     if(!project) {
         validationMessage = 'Invalid project!';
     } else if(!project.code) {
+        propertyName = 'code';
         validationMessage = 'Invalid project code!';
-    } else if(!project.year) {
+    } else if(!project.year
+        || !Number.isInteger(+project.year)
+        || +project.year < 2018
+        || +project.year > new Date().getFullYear()) {
+        propertyName = 'year';
         validationMessage = 'Invalid project year!';
-    } else if (!project.createdById) {
+    } else if (!project.createdBy
+        || !Number.isInteger(+project.createdBy)
+        || +project.createdBy < 1
+        || +project.createdBy > 10000) {
+        propertyName = 'createdBy';
         validationMessage = 'Invalid  project created By!';
-    } else if (!project.managerId) {
+    } else if (!project.managerId
+        || !Number.isInteger(+project.managerId)
+        || +project.managerId < 1
+        || +project.managerId > 10000) {
+        propertyName = 'managerId';
         validationMessage = 'Invalid  project manager Id!';
     } else if(!project.title) {
+        propertyName = 'title';
         validationMessage = 'Invalid project title!';
     } else if(!project.isActive) {
+        propertyName = 'isActive';
         validationMessage = 'Invalid project status!';
     }
 
@@ -50,5 +69,8 @@ validateSaveProject = async (project) => {
         badRequest = false;
     }
 
-    return { message: validationMessage, badRequest, result : validationMessage === ''};
+    return { message: validationMessage
+        , badRequest
+        , propertyName 
+        , result : validationMessage === ''};
 }

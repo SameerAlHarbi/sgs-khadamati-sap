@@ -9,11 +9,12 @@ Router.get('/types', delegationsController.getDelegationTypes);
 
 // /delegations/projects => POST body {"code": "000011",
 //                                              "year": "2022",
-//                                              "createdById": "917",
+//                                              "createdBy": "917",
 //                                              "managerId": "1143",
 //                                              "title": "Test Add Project from Node.js",
 //                                              "note": "Test",
 //                                              "isActive": "true"}
-Router.post('/Projects', projectsController.saveProject);
+Router.post('/Projects'
+    , projectsController.saveProject);
 
 module.exports = Router;
