@@ -9,7 +9,7 @@ exports.saveProject = async (project) => {
         const results = await sapClient.call('ZHR_MANDATE_PROJECTS',{ IM_PROJECT: {
             PCODE:  project.code,
             GJAHR:  project.year,
-            USNAM:  project.createdById,
+            USNAM:  project.createdBy,
             PERNR:  project.managerId,
             PNAME:  project.title,
             NOTE: !(project.note)? "" : project.note,
