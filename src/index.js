@@ -12,7 +12,10 @@ const employeesRouter = require('./routers/employees.router');
 const departmentsRouter = require('./routers/departments.router');
 const vacationsRouter = require('./routers/vacations.router');
 const attachmentsRouter = require('./routers/attachments.router');
+const delegationsRouter = require('./routers/delegations.router');
 
+
+//Controllers
 const errorsController = require('./controllers/errors.controller');
 
 //Express server
@@ -33,12 +36,12 @@ app.use((req, res, next) => {
 
 // app.use(authMiddleware);
 
+app.use('/delegations', delegationsRouter);
 app.use('/countries', countriesRouter);
 app.use('/employees', authMiddleware, employeesRouter);
 app.use('/departments', authMiddleware, departmentsRouter); 
 app.use('/vacations', authMiddleware, vacationsRouter);
 app.use('/attachments', attachmentsRouter);
-
 app.use('/500', errorsController.get500);
 app.use(errorsController.get404);
 
