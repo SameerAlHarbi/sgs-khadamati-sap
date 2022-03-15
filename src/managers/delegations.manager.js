@@ -7,7 +7,7 @@ const delegationType = require('../models/delegationType.model');
  * @param {string} lang - Results language.
  * @return {Array<delegationType>} Array of delegationsTypes objects.
  */
- exports.getDelegationTypes = async (lang = 'A') => {
+ exports.getTypes = async (lang = 'A') => {
 
     lang = lang.toUpperCase();
 
@@ -20,6 +20,17 @@ const delegationType = require('../models/delegationType.model');
         }
 
         return results['T_TYPE'].map(result => modelMapper.mapDelegationTypeDTO(result));
+
+    } catch (error) {
+        throw error;
+    }
+}
+
+exports.calcAmount = async (delegationRequest) => {
+
+    try {
+        
+        //TODO: Osama ;)
 
     } catch (error) {
         throw error;
