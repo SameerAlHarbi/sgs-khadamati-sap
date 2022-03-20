@@ -20,17 +20,22 @@ Router.post('/projects'
     , projectsController.saveProject);
 
 // /delegations/calc-amount => POST body {
-//                                         "date": "2022-03-15",
-//                                         "employeeId": "917",
-//                                         "startDate": "2022-03-19",
-//                                         "endDate": "2022-03-22",
-//                                         "countryCode": "SA",
-//                                         "dateFormat": "yyyy-MM-dd"
-//                                         "note": "Test"
-//                                          ...}
+//                                         "employeeId": "917"
+//                                       , "startDate": "2022-03-19"
+//                                       , "endDate": "2022-03-22"
+//                                       , "dateFormat": "yyyy-MM-dd"
+//                                       , "type" : "Internal|External|Field|Domain|Other"
+//                                       , "countryCode": "SA"
+//                                       , "transportation" : "ByAir|ByLand"
+//                                       , "role": "Technican|Driver"
+//                                       , "costEndurance" : "Full|Spendings|Non"
+//                                        }
 //
 Router.post('/calc-amount'
-    , queryMiddleware.parseDate(['date','startDate', 'endDate'], 'dateFormat', true, false, true)
+    , queryMiddleware
+        .parseDate(['startDate', 'endDate']
+        , 'dateFormat'
+        , true, false, true)
     , delegationsController.calcAmount);
 
 module.exports = Router;
