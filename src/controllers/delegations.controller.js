@@ -23,10 +23,12 @@ exports.calcAmount = async (req, res, next) => {
 
     try {
 
+        console.table(delegationRequest);
+
         const results = await delegationsManager
             .calcAmount(delegationRequest);
         
-        res.json(results);
+        return res.json(results);
 
     } catch (error) {
         error.httpStatusCode = error.httpStatusCode || 500;
