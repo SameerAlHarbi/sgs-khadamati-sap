@@ -36,6 +36,8 @@ Router.post('/calc-amount'
         .parseDate(['startDate', 'endDate']
         , 'dateFormat'
         , true, false, true)
+    , queryMiddleware.parseNumberParams(['employeeId']
+        , true, false, true, true, 1, 10000, 'non', true)
     , delegationsController.calcAmount);
 
 module.exports = Router;
