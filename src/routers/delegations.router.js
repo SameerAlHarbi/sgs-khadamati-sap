@@ -20,7 +20,7 @@ Router.post('/projects'
     , projectsController.saveProject);
 
 // /delegations/calc-amount => POST body {
-//                                         "employeeId": "917"
+//                                         "employeeId": 917
 //                                       , "startDate": "2022-03-19"
 //                                       , "endDate": "2022-03-22"
 //                                       , "dateFormat": "yyyy-MM-dd"
@@ -32,12 +32,24 @@ Router.post('/projects'
 //                                        }
 //
 Router.post('/calc-amount'
+    , queryMiddleware.parseNumberParams(['employeeId']
+        , true, false, true, true, 1, 10000, 'non', true)
     , queryMiddleware
         .parseDate(['startDate', 'endDate']
         , 'dateFormat'
         , true, false, true)
-    , queryMiddleware.parseNumberParams(['employeeId']
-        , true, false, true, true, 1, 10000, 'non', true)
+    , queryMiddleware.validateEnums('type'
+        , ['Internal','External','Field','Domain','Other']
+        , true , 'Internal', true)
+    , queryMiddleware.validateEnums('transportation'
+        , ['ByAir', 'ByLand']
+        , true, 'ByAir', true)
+    , queryMiddleware.validateEnums('role'
+        , ['Technican', 'Driver']
+        , true, 'Technican', true)
+    , queryMiddleware.validateEnums('costEndurance'
+        , ['Full', 'Spendings', 'Non']
+        , true, 'Full', true)
     , delegationsController.calcAmount);
 
 module.exports = Router;
