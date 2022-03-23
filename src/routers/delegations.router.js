@@ -50,6 +50,35 @@ Router.post('/calc-amount'
     , queryMiddleware.validateEnums('costEndurance'
         , ['Full', 'Spendings', 'Non']
         , true, 'Full', true)
+    , (req, res, next) => {
+        if(!req.body['startDate']){
+            const error = new Error('startDate is required!');
+            error.httpStatusCode = 400;
+            return next(error)
+        }
+        if(!req.body['endDate']){
+            const error = new Error('startDate is required!');
+            error.httpStatusCode = 400;
+            return next(error)
+        }
+        if(req.body['type'].toUpperCase() !== 'EXTERNAL') {
+
+            if(!req.body['countryCode'])
+            {
+                req.body['countryCode'] = 'SA';
+            } else if(req.body['countryCode'].toUpperCase() !== 'SA'){
+                const error = new Error('countryCode is invalid!');
+                error.httpStatusCode = 400;
+                return next(error)
+            }
+        } else if(!req.body['countryCode'] || req.body['countryCode'].toUpperCase() === 'SA') {
+            const error = new Error('countryCode is invalid!');
+            error.httpStatusCode = 400;
+            return next(error)
+        }
+
+        return next;
+    }
     , delegationsController.calcAmount);
 
 module.exports = Router;

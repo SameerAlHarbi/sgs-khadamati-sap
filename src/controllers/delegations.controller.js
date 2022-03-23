@@ -21,6 +21,8 @@ exports.calcAmount = async (req, res, next) => {
     
     const delegationRequest = req.body;
 
+    
+
     try {
 
         console.table(delegationRequest);
