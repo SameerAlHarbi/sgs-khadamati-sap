@@ -21,16 +21,18 @@ exports.calcAmount = async (req, res, next) => {
     
     const delegationRequest = req.body;
 
-    
-
     try {
 
-        console.table(delegationRequest);
-
-        const results = await delegationsManager
+        const result = await delegationsManager
             .calcAmount(delegationRequest);
+
+        if(!result) {
+            const error = new Error();
+            error.httpStatusCode = 404;
+            throw error;
+        }
         
-        return res.json(results);
+        return res.json(result);
 
     } catch (error) {
         error.httpStatusCode = error.httpStatusCode || 500;

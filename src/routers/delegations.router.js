@@ -24,9 +24,9 @@ Router.post('/projects'
 //                                       , "startDate": "2022-03-19"
 //                                       , "endDate": "2022-03-22"
 //                                       , "dateFormat": "yyyy-MM-dd"
-//                                       , "type" : "Internal|External|Field|Domain|Other"
+//                                       , "type" : "Field|Internal|External|Domain|Other"
 //                                       , "countryCode": "SA"
-//                                       , "transportation" : "ByAir|ByLand"
+//                                       , "transportation" : "ByAir|ByLand|Other"
 //                                       , "role": "Technican|Driver"
 //                                       , "costEndurance" : "Full|Spendings|Non"
 //                                        }
@@ -39,10 +39,10 @@ Router.post('/calc-amount'
         , 'dateFormat'
         , true, false, true)
     , queryMiddleware.validateEnums('type'
-        , ['Internal','External','Field','Domain','Other']
+        , ['Field','Internal','External','Domain','Other']
         , true , 'Internal', true)
     , queryMiddleware.validateEnums('transportation'
-        , ['ByAir', 'ByLand']
+        , ['ByAir', 'ByLand', 'Other']
         , true, 'ByAir', true)
     , queryMiddleware.validateEnums('role'
         , ['Technican', 'Driver']
@@ -77,7 +77,7 @@ Router.post('/calc-amount'
             return next(error)
         }
 
-        return next;
+        return next();
     }
     , delegationsController.calcAmount);
 
