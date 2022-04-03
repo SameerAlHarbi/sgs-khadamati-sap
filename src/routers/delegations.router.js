@@ -1,3 +1,4 @@
+const { queryMiddleware } = require('@abujude/sgs-khadamati');
 const express = require('express');
 const delegationsController = require('../controllers/delegations.controller');
 const projectsController = require('../controllers/projects.controller');
@@ -83,5 +84,16 @@ Router.post('/calc-amount'
 
 // /delegations/allocation?{employeeId}&{sapId} => GET
 Router.get('/allocation', delegationsController.getAllocation);
+// /delegations/accomplished => POST body {"employeeId": 1143,
+//                                         "sapId": "4000010007",
+//                                         "startDate": "2022-03-01",
+//                                         "endDate": "2022-03-03"}
+Router.post('/accomplished'
+    //, queryMiddleware.parseNumberParams(['employeeId']
+    //        , true, false, true, true, 1, 10000, 'non', true)
+    , queryMiddleware.parseDate(['startDate','endDate']
+            , 'dateFormat'
+            , true, false, true)
+    , delegationsController.accomplished);
 
 module.exports = Router;
