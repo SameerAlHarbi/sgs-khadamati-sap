@@ -81,4 +81,7 @@ Router.post('/calc-amount'
     }
     , delegationsController.calcAmount);
 
+// /delegations/allocation?{employeeId}&{sapId} => GET
+Router.get('/allocation', delegationsController.getAllocation);
+
 module.exports = Router;
