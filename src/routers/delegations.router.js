@@ -17,4 +17,8 @@ Router.get('/types', delegationsController.getDelegationTypes);
 Router.post('/Projects'
     , projectsController.saveProject);
 
+
+// /delegations/allocation?{employeeId}&{sapId} => GET
+Router.get('/allocation', delegationsController.getAllocation);
+
 module.exports = Router;
