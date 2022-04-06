@@ -93,6 +93,7 @@ exports.calcAmount = async (delegationRequest) => {
         throw error;
     }
 }
+
 /**
  * Get an array of all delegationsTypes in SAP system.
  * @param {string} employeeId -  Employee Id.
@@ -124,6 +125,7 @@ exports.calcAmount = async (delegationRequest) => {
         throw error;
     }
 }
+
 exports.accomplished = async (delegation) => {
 
     try {
