@@ -28,7 +28,7 @@ Router.get('/balances/summary'
     , queryMiddleware.parseDate(['balanceDate'], 'dateFormat')
     , vacationsBalancesController.getAllVacationsBalancesSummaries);
 
-Router.post('/validateNew'
+Router.post('/validate-new'
     , queryMiddleware.parseDate(['startDate', 'endDate'], 'dateFormat', true, false, true)
     , vacationsController.validateEmployeeVacation);
 
