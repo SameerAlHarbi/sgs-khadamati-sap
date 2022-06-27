@@ -1,6 +1,8 @@
 const Country = require('../models/country.model');
 const City = require('../models/city.model');
 const Employee = require('../models/employee.model');
+const DelegationType = require('../models/delegationType.model');
+const Allocation = require('../models/allocation.model');
 const { dateUtil } = require('@abujude/sgs-khadamati');
 
 exports.mapCountryDTO = (sapCountry) => {
@@ -61,3 +63,22 @@ exports.mapEmployeeDTO = (sapEmployee) => {
         return employee;
 
 }
+
+exports.mapDelegationTypeDTO = (sapDelegationType) => {
+    return new DelegationType(sapDelegationType.DOMVALUE_L,
+        sapDelegationType.DDTEXT);
+};
+
+exports.mapAllocationDTO = (sapAllocationData) =>{
+    return new Allocation(sapAllocationData.BELNR
+        , sapAllocationData.BLPOS
+        , sapAllocationData.FIPOS
+        , sapAllocationData.KOSTL
+        , sapAllocationData.WAERS
+        , sapAllocationData.FISTL
+        , sapAllocationData.BUDAT
+        , sapAllocationData.WTGES
+        , sapAllocationData.ERFAS
+        , sapAllocationData.EMNAM
+        , sapAllocationData.GEBER);
+};
